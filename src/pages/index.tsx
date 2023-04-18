@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ListaSequencial } from "../core/ListaSequencial";
 import App from "../pages/listaSimplesmenteEncadeada/";
+import DoublyLinkedList from "./listaDuplamenteEncadeada/";
 
 export default function Home() {
 
@@ -47,7 +48,12 @@ export default function Home() {
           <li key={index}>{num}</li>
         ))}
       </ul>
-        <input style={{borderColor: '#000'}} type="text" value={newNumber} onChange={handleChange} />
+        <input 
+          style={{borderColor: '#000'}} 
+          type="text" 
+          value={newNumber} 
+          onChange={handleChange} 
+        />
         <br />
         <br />
         <input type="text" value={newNumberPos} onChange={(e) => setNewNumberPos(e.target.value)}/>
@@ -66,6 +72,11 @@ export default function Home() {
       <br />
 
       <App />
+
+      <br />
+      <br />
+
+      <DoublyLinkedList />
 
       </>
   );

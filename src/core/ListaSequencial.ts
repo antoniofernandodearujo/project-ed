@@ -20,12 +20,13 @@ export class ListaSequencial implements ListInterface {
       const position = parseInt(String(pos)) - 1;
   
       //Verifica se a posição é válida
+      //retirar a condição do meio
       if (position >= 0 && position <= this.listNumbers.length && this.listNumbers.length < this.max) {
         // Verifica se o número já existe na lista
         if (!this.listNumbers.includes(number)) {
           const newList = [...this.listNumbers.slice(0, position), number, ...this.listNumbers.slice(position)];
           this.listNumbers = newList;
-        } else {
+        } else { //retirar
           console.log(`O número ${number} já existe na lista.`);
         }
       } else {

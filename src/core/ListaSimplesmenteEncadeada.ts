@@ -24,13 +24,13 @@ export class ListaSimplesmenteEncadeada {
     }
 
     // Verifica se o valor já existe na lista
-    let atual = this.cabeca;
+    /*let atual = this.cabeca;
     while (atual != null) {
       if (atual.valor === valor) {
         throw new Error('Valor duplicado.');
       }
       atual = atual.proximo;
-    }
+    }*/
   
     // Subtrai 1 da posição caso ela seja maior do que 0
     const posicaoAtualizada = posicao > 0 ? posicao - 1 : posicao;
@@ -60,56 +60,98 @@ export class ListaSimplesmenteEncadeada {
     this.tamanho++;
   }
 
-  
-  public remover(posicaoOuValor: number): void {
+  /**
+   * Eu tive que criar 2 métodos para remoção e para a busca
+   * porque tava dando muito erro, se lembrar de alguma coisa
+   * ou fazer alguma validação.
+   */
+
+  public removerPorPosicao(posicao: number): void {
     if (this.tamanho === 0) {
-      throw new Error('A lista está vazia.');
+      throw new Error('Lista vazia.');
     }
-
-    // remover pela posição
-    if (Number.isInteger(posicaoOuValor)) {
-      const posicao = posicaoOuValor as number;
-      if (posicao < 0 || posicao >= this.tamanho) {
-        throw new Error('Posição inválida.');
-      }
-      if (posicao === 0) {
-        this.cabeca = this.cabeca!.proximo;
-      } else {
-        let anterior = null;
-        let atual: No | null = this.cabeca;
-        let indice = 0;
-        while (atual != null && indice < posicao) {
-          anterior = atual;
-          atual = atual.proximo;
-          indice++;
-        }
-        if (atual != null) {
-          anterior!.proximo = atual.proximo;
-        }
-      }
-      this.tamanho--;
-      return;
+  
+    if (posicao <= 0 || posicao > this.tamanho) {
+      throw new Error('Posição inválida.');
     }
-
-    // remover pelo valor
-    let anterior = null;
-    let atual: No | null = this.cabeca;
-    while (atual != null) {
-      if (atual.valor === posicaoOuValor) {
-        if (anterior == null) {
-          this.cabeca = atual.proximo;
+  
+    if (posicao === 1) {
+      this.cabeca = this.cabeca!.proximo;
+    } else {
+      let indice = 1;
+      let noAtual = this.cabeca!;
+      let noAnterior = null;
+  
+      while (indice < posicao) {
+        noAnterior = noAtual;
+        noAtual = noAtual.proximo!;
+        indice++;
+      }
+  
+      noAnterior!.proximo = noAtual.proximo;
+    }
+  
+    this.tamanho--;
+  }
+  
+  public removerPorValor(valor: number): void {
+    if (this.tamanho === 0) {
+      throw new Error('Lista vazia.');
+    }
+  
+    let noAtual = this.cabeca;
+    let noAnterior = null;
+  
+    while (noAtual !== null) {
+      if (noAtual.valor === valor) {
+        if (noAnterior === null) {
+          this.cabeca = noAtual.proximo;
         } else {
-          anterior.proximo = atual.proximo;
+          noAnterior.proximo = noAtual.proximo;
         }
+  
         this.tamanho--;
         return;
       }
-      anterior = atual;
-      atual = atual.proximo;
+  
+      noAnterior = noAtual;
+      noAtual = noAtual.proximo;
     }
-    throw new Error('Valor não encontrado.');
+  
+    throw new Error('Valor não encontrado na lista.');
   }
 
+
+  public buscarPorPosicao(posicao: number): No | null {
+    if (posicao <= 0 || posicao > this.tamanho) {
+      return null;
+    }
+  
+    let noAtual = this.cabeca;
+    let indice = 1;
+  
+    while (indice < posicao) {
+      noAtual = noAtual!.proximo;
+      indice++;
+    }
+  
+    return noAtual;
+  }
+
+  public buscarPorValor(valor: number): No | null {
+    let noAtual = this.cabeca;
+  
+    while (noAtual !== null) {
+      if (noAtual.valor === valor) {
+        return noAtual;
+      }
+  
+      noAtual = noAtual.proximo;
+    }
+  
+    return null;
+  }
+    
   toArray(): any[] {
     const elementos: any[] = [];
     let atual = this.cabeca;

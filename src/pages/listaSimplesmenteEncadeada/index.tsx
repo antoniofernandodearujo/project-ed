@@ -6,6 +6,10 @@ export default function ListaSimplesmenteEncadeadaComponent() {
   const [posicao, setPosicao] = useState("");
   const [lista, setLista] = useState(new ListaSimplesmenteEncadeada());
 
+  /**
+   * As 3 funções básicas estão funcionando aparentemente
+   */
+
   const adicionarValor = () => {
     const valorNumerico = parseInt(valor);
 
@@ -20,19 +24,46 @@ export default function ListaSimplesmenteEncadeadaComponent() {
   };
 
   const removerValor = () => {
-    const valorNumerico = parseInt(valor);
-  
-    if (!isNaN(valorNumerico)) {
-      lista.remover(valorNumerico);
-    } else {
-      const posicaoNumerica = parseInt(posicao);
-      lista.remover(posicaoNumerica);
+    const pos = posicao;
+    const val = valor;
+
+    if(pos !== "") {
+      if(!isNaN(parseInt(pos))) {
+        lista.removerPorPosicao(parseInt(pos));
+        setLista(lista);
+        setPosicao("");
+      }
+    } else if(val !== "") {
+      if(!isNaN(parseInt(val))) {
+        lista.removerPorValor(parseInt(val));
+        setLista(lista);
+        setValor("");
+      }
     }
-  
-    setLista(lista);
-    setValor("");
-    setPosicao("");
   };
+
+  const procurarValor = () => {
+    const pos = posicao;
+    const val = valor;
+    let no = null
+
+    if(pos !== "") {
+      if(!isNaN(parseInt(pos))) {
+        no = lista.buscarPorPosicao(parseInt(pos));
+        console.log(`O valor da posição ${pos} é ${no?.valor}`);
+        setLista(lista);
+        setPosicao("");
+      }
+    } else if(val !== "") {
+      if(!isNaN(parseInt(val))) {
+        lista.buscarPorValor(parseInt(val));
+        setLista(lista);
+        setValor("");
+        console.log(`O valor ${val} está na lista`)
+      }
+    }
+  };
+
 
   return (
     <div>
@@ -65,6 +96,8 @@ export default function ListaSimplesmenteEncadeadaComponent() {
       <br />
 
       <button onClick={removerValor}>Remover</button>
+      <br />
+      <button onClick={procurarValor}>Buscar</button>
 
     </div>
   );
