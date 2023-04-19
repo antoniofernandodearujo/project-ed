@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 //styles
+import * as S from "./styles"
 //class
 import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada"
 
@@ -11,7 +12,7 @@ const DoublyLinkedList: React.FC = () => {
 
     /**
      * As 3 funções básicas estão funcionando aparentemente
-     */
+    */
 
     const adicionarValor = () => {
         const valorNumerico = parseInt(valor);

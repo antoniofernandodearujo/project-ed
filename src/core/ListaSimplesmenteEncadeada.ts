@@ -22,15 +22,6 @@ export class ListaSimplesmenteEncadeada {
     if (posicao <= 0 || posicao > this.tamanho + 1) {
       throw new Error('Posição inválida.');
     }
-
-    // Verifica se o valor já existe na lista
-    /*let atual = this.cabeca;
-    while (atual != null) {
-      if (atual.valor === valor) {
-        throw new Error('Valor duplicado.');
-      }
-      atual = atual.proximo;
-    }*/
   
     // Subtrai 1 da posição caso ela seja maior do que 0
     const posicaoAtualizada = posicao > 0 ? posicao - 1 : posicao;
@@ -145,7 +136,7 @@ export class ListaSimplesmenteEncadeada {
       if (noAtual.valor === valor) {
         return noAtual;
       }
-  
+
       noAtual = noAtual.proximo;
     }
   

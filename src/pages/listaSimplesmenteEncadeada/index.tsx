@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada";
+import React, { useState } from "react"
+//styles
+//class
+import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada"
 
-export default function ListaSimplesmenteEncadeadaComponent() {
+const LinkendList: React.FC = () => {
   const [valor, setValor] = useState("");
   const [posicao, setPosicao] = useState("");
   const [lista, setLista] = useState(new ListaSimplesmenteEncadeada());
 
   /**
-   * As 3 funções básicas estão funcionando aparentemente
-   */
+    *As 3 funções básicas estão funcionando aparentemente
+  */
 
   const adicionarValor = () => {
     const valorNumerico = parseInt(valor);
@@ -64,7 +66,6 @@ export default function ListaSimplesmenteEncadeadaComponent() {
     }
   };
 
-
   return (
     <div>
       <div>
@@ -102,3 +103,5 @@ export default function ListaSimplesmenteEncadeadaComponent() {
     </div>
   );
 }
+
+export default LinkendList
