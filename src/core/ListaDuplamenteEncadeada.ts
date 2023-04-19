@@ -50,6 +50,54 @@ export class ListaDuplamenteEncadeada {
       this.tamanho++;
     }
 
+    public removerPorPosicao(posicao: number): void {
+      if (posicao <= 0 || posicao > this.tamanho) {
+        throw new Error('Posição inválida.');
+      }
+    
+      let atual = this.buscarPorPosicao(posicao);
+    
+      if (atual === null) {
+        throw new Error('Posição inválida.');
+      }
+    
+      if (atual.anterior === null) {
+        this.cabeca = atual.proximo;
+      } else {
+        atual.anterior.proximo = atual.proximo;
+      }
+    
+      if (atual.proximo !== null) {
+        atual.proximo.anterior = atual.anterior;
+      }
+    
+      this.tamanho--;
+    }
+
+    public removerPorValor(valor: number): void {
+      let atual = this.cabeca;
+    
+      while (atual !== null) {
+        if (atual.valor === valor) {
+          if (atual.anterior === null) {
+            this.cabeca = atual.proximo;
+          } else {
+            atual.anterior.proximo = atual.proximo;
+          }
+    
+          if (atual.proximo !== null) {
+            atual.proximo.anterior = atual.anterior;
+          }
+    
+          this.tamanho--;
+    
+          break;
+        }
+    
+        atual = atual.proximo;
+      }
+    }
+
     public buscarPorPosicao(posicao: number): No | null {
         if (posicao <= 0 || posicao > this.tamanho) {
           return null;
@@ -62,7 +110,21 @@ export class ListaDuplamenteEncadeada {
     
         return atual;
       }
-    
+
+      public buscarPorValor(valor: number): No | null {
+        let atual = this.cabeca;
+      
+        while (atual !== null) {
+          if (atual.valor === valor) {
+            return atual;
+          }
+      
+          atual = atual.proximo;
+        }
+      
+        return null;
+      }
+
       public toArray(): any[] {
         const elementos: any[] = [];
         let atual = this.cabeca;

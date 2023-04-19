@@ -26,6 +26,46 @@ const DoublyLinkedList: React.FC = () => {
         setPosicao("");
     };
 
+    const removerValor = () => {
+        const pos = posicao;
+        const val = valor;
+
+        if(pos !== "") {
+            if(!isNaN(parseInt(pos))) {
+                lista.removerPorPosicao(parseInt(pos));
+                setLista(lista);
+                setPosicao("");
+            }
+        } else if(val !== "") {
+            if(!isNaN(parseInt(val))) {
+                lista.removerPorValor(parseInt(val));
+                setLista(lista);
+                setValor("");
+            }
+        }
+    };
+
+    const procurarValor = () => {
+        const pos = posicao;
+        const val = valor;
+        let no = null
+
+        if(pos !== "") {
+            if(!isNaN(parseInt(pos))) {
+                no = lista.buscarPorPosicao(parseInt(pos));
+                alert(`O valor da posição ${pos} é ${no?.valor}`);
+                setLista(lista);
+                setPosicao("");
+            }
+        } else if(val !== "") {
+            if(!isNaN(parseInt(val))) {
+                lista.buscarPorValor(parseInt(val));
+                setLista(lista);
+                setValor("");
+                console.log(`O valor ${val} está na lista`)
+            }
+        }
+    }
 
     return (
         <div>
@@ -53,6 +93,10 @@ const DoublyLinkedList: React.FC = () => {
                 <li key={index}>{valor}</li>
                 ))}
             </ul>
+
+            <button onClick={procurarValor}>Buscar</button>
+            <br />
+            <button onClick={removerValor}>Remover</button>
 
     </div>
     )
