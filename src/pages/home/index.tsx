@@ -5,6 +5,8 @@ import * as S from './styles'
 import img from "./assets/Background-Wave-1.png"
 //components
 import Button from "../../components/button"
+//route
+import { NavLink } from "react-router-dom"
 
 const Principal: React.FC = () => {
     return (
@@ -14,12 +16,12 @@ const Principal: React.FC = () => {
             </S.Content>
 
             <S.ContainerButton>
-                <S.Button type="button">Começar</S.Button>
+                <NavLink to="/welcome"> <S.Button type="button">Começar</S.Button> </NavLink>
             </S.ContainerButton>
             
             <S.Footer>
                 <S.Image src={img.src}/>
-                <Button />
+                <Button type={2} />
             </S.Footer>
         </S.Container>
     )

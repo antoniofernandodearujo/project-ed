@@ -1,16 +1,14 @@
-//components
-import LinkendList from "../pages/listaSimplesmenteEncadeada/";
-import DoublyLinkedList from "./listaDuplamenteEncadeada/";
-import SequentialList from "./listaSequencial";
-
-//pages
-import Principal from "./home/";
-import Welcome from "./welcome/";
-//route
+//routes
+import Router from "../routes/Routes";
 
 export default function Home() {
-
-  return (
-    <Welcome />
-  );
+  if (typeof document !== "undefined") {
+    return (
+      <>
+        <Router />
+      </>
+    )
+  } else {
+    return null;
+  }
 }

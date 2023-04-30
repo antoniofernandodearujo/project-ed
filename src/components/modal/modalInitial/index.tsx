@@ -19,7 +19,7 @@ const ModalInitial: React.FC = () => {
 
     return (
         <div>
-            <Button onClick={handleOpenModal} />
+            <Button type={1} onClick={handleOpenModal} />
             <Modal
                 isOpen={showModal}
                 contentLabel="onRequestClose Example"
