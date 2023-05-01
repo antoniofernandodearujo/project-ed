@@ -14,7 +14,7 @@ export default function Document() {
 
 
   return (
-    <Html lang="en">
+    <Html lang="pt-br">
       <Head />
       <body>
         <Main />

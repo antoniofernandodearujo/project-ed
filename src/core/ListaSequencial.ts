@@ -21,7 +21,7 @@ export class ListaSequencial implements ListInterface {
 
     //Verifica se a posição é válida
     //retirar a condição do meio
-    if (position >= 0 && position <= this.listNumbers.length && this.listNumbers.length < this.max) {
+    if (position >= 0 && position <= this.listNumbers.length && (this.listNumbers.length < this.max)) {
       // Verifica se o número já existe na lista
       if (!this.listNumbers.includes(number)) {
         const newList = [...this.listNumbers.slice(0, position), number, ...this.listNumbers.slice(position)];
@@ -41,7 +41,7 @@ export class ListaSequencial implements ListInterface {
     }
 
     if(pos === undefined && num === undefined) {
-      console.log('Informe apenas a posição ou o número a ser removido.');
+      console.log('Informe a posição ou o número a ser removido.');
       return;
     }
 
@@ -69,22 +69,22 @@ export class ListaSequencial implements ListInterface {
   }
 
   searchInList(num?: number, pos?: number) {
-      if (num !== undefined) {
-        const index = this.listNumbers.indexOf(num);
-        if (index > -1) {
-          console.log(`O número ${num} existe na lista e está na posição ${index + 1}!`);
-        } else {
-          console.log(`O número ${num} não existe na lista.`);
-        }
-      } else if (pos !== undefined) {
-        const index = parseInt(String(pos)) - 1;
-        if (index >= 0 && index < this.listNumbers.length) {
-          console.log(`O elemento na posição ${pos} é o número ${this.listNumbers[index]}.`);
-        } else {
-          console.log('Posição inválida.');
-        }
+    if (num !== undefined) {
+      const index = this.listNumbers.indexOf(num);
+      if (index > -1) {
+        console.log(`O número ${num} existe na lista e está na posição ${index + 1}!`);
       } else {
-          console.log('Informe a posição ou o número a ser pesquisado.');
+        console.log(`O número ${num} não existe na lista.`);
       }
+    } else if (pos !== undefined) {
+      const index = parseInt(String(pos)) - 1;
+      if (index >= 0 && index < this.listNumbers.length) {
+        console.log(`O elemento na posição ${pos} é o número ${this.listNumbers[index]}.`);
+      } else {
+        console.log('Posição inválida.');
+      }
+    } else {
+        console.log('Informe a posição ou o número a ser pesquisado.');
+    }
   }
 }

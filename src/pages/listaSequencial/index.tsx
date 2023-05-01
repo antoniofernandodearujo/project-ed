@@ -2,7 +2,6 @@ import React from "react"
 
 //components
 import Menu from "@/src/components/menu"
-import Box from "@/src/components/box"
 import Form from "@/src/components/form"
 import Button from "@/src/components/button"
 //styles
@@ -14,7 +13,6 @@ const ListSequential: React.FC = () => {
     return (
         <S.Container>
             <Menu />
-            <Box/>
             <Form />
             <S.Footer>
                 <S.Image src={img.src}/>

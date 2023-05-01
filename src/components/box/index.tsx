@@ -1,68 +1,24 @@
-import React from "react"
+import React, { useState } from "react"
 //styles
 import * as S from "./styles"
+//list-sequential
+import { ListaSequencial } from "@/src/core/ListaSequencial";
 
-const Box: React.FC = () => {
+const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
 
-    return(
+    return (
         <S.Container>
             <S.Box>
                 <S.Content>
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
+                    {myList.listNumbers.map((num, index) => (
+                        <S.ContainerAll key={index}>
+                        <S.Title>{index + 1}°</S.Title>
+                            <S.Case>
+                                <S.BoxNumber>[ {num} ]</S.BoxNumber>
+                            </S.Case>
+                        </S.ContainerAll>
+                    ))}
+                    
                 </S.Content>
             </S.Box>
         </S.Container>
