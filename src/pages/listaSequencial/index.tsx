@@ -8,13 +8,13 @@ import Button from "@/src/components/button"
 //styles
 import * as S from "./styles"
 //img
-import img from "./assets/vector.png"
+import img from "../assets/vector.png"
 
 const ListSequential: React.FC = () => {
     return (
         <S.Container>
             <Menu />
-            <Box />
+            <Box/>
             <Form />
             <S.Footer>
                 <S.Image src={img.src}/>

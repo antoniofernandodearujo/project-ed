@@ -65,7 +65,6 @@ export const MenuItem = styled.button`
     &:hover{
         color: #FF9A02;
     }
-   
 
     &:last-child {
         border-bottom: none;

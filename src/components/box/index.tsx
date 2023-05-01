@@ -3,7 +3,8 @@ import React from "react"
 import * as S from "./styles"
 
 const Box: React.FC = () => {
-    return (
+
+    return(
         <S.Container>
             <S.Box>
                 <S.Content>
@@ -62,7 +63,6 @@ const Box: React.FC = () => {
                             <S.BoxNumber>[ 10 ]</S.BoxNumber>
                         </S.Case>
                     </S.ContainerAll>
-
                 </S.Content>
             </S.Box>
         </S.Container>

@@ -5,7 +5,7 @@ import * as S from './styles'
 import ModalInitial from '@/src/components/modal/modalInitial'
 import Menu from '@/src/components/menu'
 //img
-import img from "./assets/person.jpeg"
+import img from "../assets/person.jpeg"
 
 const Welcome: React.FC = () => {
     
