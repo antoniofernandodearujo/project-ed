@@ -5,16 +5,14 @@ import * as S from "./styles"
 import img from "../assets/vector.png"
 //components
 import Menu from "@/src/components/menu"
-import BoxListaDuplamenteEncadeada from "@/src/components/box/boxListaDuplamenteEncadeada"
-import Form from "@/src/components/form"
+import FormLDE from "@/src/components/form/formLDE"
 import Button from "@/src/components/button"
 
 const ListaDuplamenteEncadeada: React.FC = () => {
   return (
     <S.Container>
       <Menu />
-      <BoxListaDuplamenteEncadeada />
-      <Form />
+      <FormLDE />
       <S.Footer>
         <S.Image src={img.src}/>
         <S.ContainerButton>

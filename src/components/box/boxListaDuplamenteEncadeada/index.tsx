@@ -3,8 +3,12 @@ import React from "react"
 import * as S from "./styles"
 //icon
 import { IoRepeatSharp, IoReturnDownForwardSharp } from "react-icons/io5";
+//list duplamente encadeada
+import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada";
 
-const BoxListaDuplamenteEncadeada: React.FC = () => {
+const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }> = ({ myList }) => {
+
+    let cabeca = myList.getCabeca();
 
     return(
         <S.Container>
@@ -14,7 +18,7 @@ const BoxListaDuplamenteEncadeada: React.FC = () => {
                         <S.CaseHeader>
                             <S.ContentHeader>
                                 <S.TitleHeader>Head Value</S.TitleHeader>
-                                <S.BoxNumberHeader> 10 </S.BoxNumberHeader>    
+                                <S.BoxNumberHeader> {cabeca?.valor} </S.BoxNumberHeader>    
                             </S.ContentHeader>
                         </S.CaseHeader>
                     </S.ContainerHeader>
@@ -26,89 +30,22 @@ const BoxListaDuplamenteEncadeada: React.FC = () => {
                 </S.Header>
 
                 <S.Content>
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
 
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
+                    {myList.toArray().map((value, index) => (
+                        <>
+                            <S.ContainerAll key={index}>
+                                <S.Title>{index + 1}°</S.Title>
+                                <S.Case>
+                                <S.BoxNumber>[ {value} ]</S.BoxNumber>
+                                </S.Case>
+                            </S.ContainerAll>
 
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
+                            <S.ContainerArrowRight>
+                                <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
+                            </S.ContainerArrowRight>
+                        </>
+                    ))}
 
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
                 </S.Content>
             </S.Box>
         </S.Container>

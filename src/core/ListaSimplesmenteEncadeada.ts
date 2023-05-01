@@ -17,7 +17,15 @@ export class ListaSimplesmenteEncadeada {
     this.tamanho = 0;
   }
 
-  public adicionar(posicao: number, valor: number): void {
+  public getCabeca(): No | null {
+    return this.cabeca;
+  }
+
+  public getTamanho(): number {
+    return this.tamanho;
+  }
+
+  public adicionar(valor: number, posicao: number): void {
 
     if (posicao <= 0 || posicao > this.tamanho + 1) {
       throw new Error('Posição inválida.');

@@ -3,8 +3,12 @@ import React from "react"
 import * as S from "./styles"
 //icon
 import { IoArrowForwardOutline, IoReturnDownForwardSharp } from "react-icons/io5";
+//class LSE
+import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada";
 
-const BoxListaSimplesmenteEncadeada: React.FC = () => {
+const BoxListaSimplesmenteEncadeada: React.FC<{ myList: ListaSimplesmenteEncadeada }> = ({ myList }) => {
+
+    let cabeca = myList.getCabeca()
 
     return(
         <S.Container>
@@ -14,7 +18,7 @@ const BoxListaSimplesmenteEncadeada: React.FC = () => {
                         <S.CaseHeader>
                             <S.ContentHeader>
                                 <S.TitleHeader>Head Value</S.TitleHeader>
-                                <S.BoxNumberHeader> 10 </S.BoxNumberHeader>    
+                                <S.BoxNumberHeader> { cabeca?.valor } </S.BoxNumberHeader>    
                             </S.ContentHeader>
                         </S.CaseHeader>
                     </S.ContainerHeader>
@@ -26,89 +30,16 @@ const BoxListaSimplesmenteEncadeada: React.FC = () => {
                 </S.Header>
 
                 <S.Content>
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
+               
+                    {myList.toArray().map((value, index) => (
+                        <S.ContainerAll key={index}>
+                            <S.Title>{index + 1}°</S.Title>
+                            <S.Case>
+                            <S.BoxNumber>[ {value} ]</S.BoxNumber>
+                            </S.Case>
+                        </S.ContainerAll>
+                    ))}
 
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
-
-                    <S.ContainerArrowRight>
-                        <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                    </S.ContainerArrowRight>
-
-                    <S.ContainerAll>
-                        <S.Title>1°</S.Title>
-                        <S.Case>
-                            <S.BoxNumber>[ 10 ]</S.BoxNumber>
-                        </S.Case>
-                    </S.ContainerAll>
                 </S.Content>
             </S.Box>
         </S.Container>

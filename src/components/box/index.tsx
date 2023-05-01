@@ -18,7 +18,6 @@ const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
                             </S.Case>
                         </S.ContainerAll>
                     ))}
-                    
                 </S.Content>
             </S.Box>
         </S.Container>
