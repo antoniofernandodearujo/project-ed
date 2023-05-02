@@ -26,38 +26,33 @@ export class ListaSimplesmenteEncadeada {
   }
 
   public adicionar(valor: number, posicao: number): void {
-
     if (posicao <= 0 || posicao > this.tamanho + 1) {
       throw new Error('Posição inválida.');
     }
   
-    // Subtrai 1 da posição caso ela seja maior do que 0
-    const posicaoAtualizada = posicao > 0 ? posicao - 1 : posicao;
-  
     const novoNo = new No(valor);
-    if (posicaoAtualizada === 0) {
+  
+    if (posicao === 1) {
       novoNo.proximo = this.cabeca;
       this.cabeca = novoNo;
     } else {
       let anterior = null;
-      let atual: No | null = this.cabeca;
-      let indice = 0; 
-      while (atual != null && indice < posicaoAtualizada) {
+      let atual = this.cabeca;
+      let indice = 1;
+  
+      while (atual != null && indice < posicao) {
         anterior = atual;
         atual = atual.proximo;
         indice++;
       }
-    
-      if (atual == null) {
-        anterior!.proximo = novoNo;
-      } else {
-        novoNo.proximo = atual;
-        anterior!.proximo = novoNo;
-      }
+  
+      novoNo.proximo = atual;
+      anterior!.proximo = novoNo;
     }
   
     this.tamanho++;
   }
+  
 
   /**
    * Eu tive que criar 2 métodos para remoção e para a busca

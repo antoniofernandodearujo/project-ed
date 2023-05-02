@@ -46,25 +46,30 @@ const FormLSE: React.FC = () => {
     function search () {
         const position = pos;
         const val = value;
-        let no = null
-
-        if(position !== "") {
-            if(!isNaN(parseInt(position))) {
+        let no = null;
+    
+        if (position !== "") {
+            if (!isNaN(parseInt(position))) {
                 no = lista.buscarPorPosicao(parseInt(position));
                 console.log(`O valor da posição ${position} é ${no?.valor}`);
                 setLista(lista);
                 setPos("");
             }
-        } else if(val !== "") {
-            if(!isNaN(parseInt(val))) {
-                lista.buscarPorValor(parseInt(val));
+        } else if (val !== "") {
+            if (!isNaN(parseInt(val))) {
+                no = lista.buscarPorValor(parseInt(val));
                 setLista(lista);
                 setValue("");
-                console.log(`O valor ${val} está na lista`)
+    
+                if (no === null) {
+                    console.log(`O valor ${val} não está na lista`);
+                } else {
+                    console.log(`O valor ${val} está na lista`);
+                }
             }
         }
     }
-
+    
     return (
         <>
             <BoxListaSimplesmenteEncadeada myList={lista}/>
