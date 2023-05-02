@@ -29,6 +29,10 @@ export class ListaSimplesmenteEncadeada {
     if (posicao <= 0 || posicao > this.tamanho + 1) {
       throw new Error('Posição inválida.');
     }
+
+    if (this.tamanho >= 8) {
+      throw new Error('A lista já atingiu o tamanho máximo de 8 elementos.');
+    }
   
     const novoNo = new No(valor);
   
@@ -60,33 +64,30 @@ export class ListaSimplesmenteEncadeada {
    * ou fazer alguma validação.
    */
 
-  public removerPorPosicao(posicao: number): void {
-    if (this.tamanho === 0) {
-      throw new Error('Lista vazia.');
-    }
-  
+    public removerPorPosicao(posicao: number): void {
     if (posicao <= 0 || posicao > this.tamanho) {
       throw new Error('Posição inválida.');
     }
-  
+
     if (posicao === 1) {
       this.cabeca = this.cabeca!.proximo;
     } else {
       let indice = 1;
       let noAtual = this.cabeca!;
       let noAnterior = null;
-  
+
       while (indice < posicao) {
         noAnterior = noAtual;
         noAtual = noAtual.proximo!;
         indice++;
       }
-  
+
       noAnterior!.proximo = noAtual.proximo;
     }
-  
+
     this.tamanho--;
   }
+
   
   public removerPorValor(valor: number): void {
     if (this.tamanho === 0) {
@@ -111,8 +112,9 @@ export class ListaSimplesmenteEncadeada {
       noAnterior = noAtual;
       noAtual = noAtual.proximo;
     }
-  
-    throw new Error('Valor não encontrado na lista.');
+      if (this.tamanho < 8 && noAtual === null) {
+        throw new Error('Valor não encontrado na lista.');
+      }
   }
 
 

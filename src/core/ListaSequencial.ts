@@ -16,24 +16,22 @@ export class ListaSequencial implements ListInterface {
   }
 
   addInList(num: number, pos: number) {
-    const number = parseInt(String(num));
-    const position = parseInt(String(pos)) - 1;
-
-    //Verifica se a posição é válida
-    //retirar a condição do meio
-    if (position >= 0 && position <= this.listNumbers.length && (this.listNumbers.length < this.max)) {
-      // Verifica se o número já existe na lista
-      if (!this.listNumbers.includes(number)) {
-        const newList = [...this.listNumbers.slice(0, position), number, ...this.listNumbers.slice(position)];
-        this.listNumbers = newList;
-      } else { //retirar
-        console.log(`O número ${number} já existe na lista.`);
-      }
-    } else {
-      console.log('Posição inválida.');
+    if (this.listNumbers.length >= this.max) {
+      alert('A lista já atingiu seu tamanho máximo.');
+      return;
     }
+  
+    if (pos > this.listNumbers.length + 1 || pos < 1) {
+      alert('Posição inválida.');
+      return;
+    }
+  
+    const index = parseInt(String(pos)) - 1;
+    const newList = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
+  
+    this.listNumbers = newList;
   }
-
+  
   removeInList(num?: number, pos?: number) {
     if (pos !== undefined && num !== undefined) {
       console.log('Informe apenas a posição ou o número a ser removido.');
@@ -53,7 +51,7 @@ export class ListaSequencial implements ListInterface {
         newList = [...this.listNumbers.slice(0, index), ...this.listNumbers.slice(index + 1)];
         this.listNumbers = newList;
       } else {
-        console.log('Posição inválida.');
+        alert('Posição inválida.');
       }
     } else if (num !== undefined) {
       const number = parseInt(String(num));
@@ -61,10 +59,10 @@ export class ListaSequencial implements ListInterface {
         newList = this.listNumbers.filter((n) => n !== number);
         this.listNumbers = newList;
       } else {
-        console.log(`O número ${number} não existe na lista.`);
+        alert(`O número ${number} não existe na lista.`);
       }
     } else {
-      console.log('Informe a posição ou o número a ser removido.');
+      alert('Informe a posição ou o número a ser removido.');
     }
   }
 
@@ -72,19 +70,19 @@ export class ListaSequencial implements ListInterface {
     if (num !== undefined) {
       const index = this.listNumbers.indexOf(num);
       if (index > -1) {
-        console.log(`O número ${num} existe na lista e está na posição ${index + 1}!`);
+        alert(`O número ${num} existe na lista e está na posição ${index + 1}!`);
       } else {
-        console.log(`O número ${num} não existe na lista.`);
+        alert(`O número ${num} não existe na lista.`);
       }
     } else if (pos !== undefined) {
       const index = parseInt(String(pos)) - 1;
       if (index >= 0 && index < this.listNumbers.length) {
-        console.log(`O elemento na posição ${pos} é o número ${this.listNumbers[index]}.`);
+        alert(`O elemento na posição ${pos} é o número ${this.listNumbers[index]}.`);
       } else {
-        console.log('Posição inválida.');
+        alert('Posição inválida.');
       }
     } else {
-        console.log('Informe a posição ou o número a ser pesquisado.');
+      alert('Informe a posição ou o número a ser pesquisado.');
     }
   }
 }

@@ -33,6 +33,10 @@ export class ListaDuplamenteEncadeada {
       throw new Error('Posição inválida.');
     }
 
+    if (this.tamanho >= 8) {
+      throw new Error('Tamanho máximo da lista excedido.');
+    }
+
     const novoNo = new No(valor);
 
     if (posicao === 1) {
@@ -64,6 +68,15 @@ export class ListaDuplamenteEncadeada {
       throw new Error('Posição inválida.');
     }
   
+    if (this.tamanho <= 0) {
+      throw new Error('A lista está vazia.');
+    }
+  
+    if (this.tamanho === 8 && posicao === this.tamanho) {
+      this.tamanho--;
+      return;
+    }
+  
     let atual = this.buscarPorPosicao(posicao);
   
     if (atual === null) {
@@ -82,6 +95,7 @@ export class ListaDuplamenteEncadeada {
   
     this.tamanho--;
   }
+  
 
   public removerPorValor(valor: number): void {
     let atual = this.cabeca;
@@ -105,7 +119,12 @@ export class ListaDuplamenteEncadeada {
   
       atual = atual.proximo;
     }
+    
+    if (this.tamanho < 8 && atual === null) {
+      throw new Error('O elemento não foi encontrado na lista.');
+    }
   }
+  
 
   public buscarPorPosicao(posicao: number): No | null {
     if (posicao <= 0 || posicao > this.tamanho) {

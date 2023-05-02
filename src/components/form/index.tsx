@@ -12,8 +12,20 @@ const Form: React.FC = () => {
     const [myList, setMyList] = useState(new ListaSequencial(8, [1, 3, 5]))
 
     function handleAddNumber() {
+ 
+        if(value === "" && pos === ""){
+            alert("Digite um valor válido")
+            return
+        }
+
+        if(isNaN(parseInt(value)) || isNaN(parseInt(pos))) {
+            alert("Digite um valor válido")
+            return
+        }
+
         const num = parseInt(value)
         const position = parseInt(pos)
+
         myList.addInList(num, position)
         setMyList(new ListaSequencial(myList.max, myList.listNumbers))
         setPos("")
@@ -37,8 +49,15 @@ const Form: React.FC = () => {
     }
 
     function handleSearchNumber() {
+
         const num = parseInt(value)
         const position = parseInt(pos)
+
+        if(isNaN(num) || isNaN(position)) {
+            alert("Digite um valor válido")
+            return
+        }
+
         if(value !== "")
             myList.searchInList(num, undefined)
         
