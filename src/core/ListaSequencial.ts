@@ -9,31 +9,39 @@ interface ListInterface {
 export class ListaSequencial implements ListInterface {
   max: number;
   listNumbers: number[];
+  nElements: number;
 
   constructor(max: number, listNumbers: number[]) {
     this.max = max;
     this.listNumbers = listNumbers;
+    this.nElements = listNumbers.length;
   }
 
   addInList(num: number, pos: number) {
-    if (this.listNumbers.length >= this.max) {
-      alert('A lista já atingiu seu tamanho máximo.');
-      return;
-    }
-  
-    if (pos > this.listNumbers.length + 1 || pos < 1) {
+    
+    if(pos > this.nElements + 1){ // Verificação de posição 1
       alert('Posição inválida.');
       return;
     }
-  
+
+    if (this.listIsfull()) {
+      alert('A lista já atingiu seu tamanho máximo.');
+      return;
+    }
+
     const index = parseInt(String(pos)) - 1;
-    const newList = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
-  
-    this.listNumbers = newList;
+    if (index >= 0 && index < this.max) { // Verificação de posição 2
+    }else{
+      alert('Posição inválida.');
+      return;
+    }
+
+    this.nElements++;
+    // Adiciona o elemento na posição informada e move os demais elementos para a direita
+    this.listNumbers = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
   }
-  
   removeInList(num?: number, pos?: number) {
-    if (pos !== undefined && num !== undefined) {
+    if (pos !== undefined && num !== undefined) {//
       console.log('Informe apenas a posição ou o número a ser removido.');
       return;
     }
@@ -64,6 +72,8 @@ export class ListaSequencial implements ListInterface {
     } else {
       alert('Informe a posição ou o número a ser removido.');
     }
+
+    this.nElements--;
   }
 
   searchInList(num?: number, pos?: number) {
@@ -85,4 +95,8 @@ export class ListaSequencial implements ListInterface {
       alert('Informe a posição ou o número a ser pesquisado.');
     }
   }
-}
+ 
+  private listIsfull() {
+    return this.listNumbers.length >= this.max;
+  }
+} 
