@@ -65,28 +65,27 @@ export class ListaSimplesmenteEncadeada {
    */
 
     public removerPorPosicao(posicao: number): void {
-    if (posicao <= 0 || posicao > this.tamanho) {
-      throw new Error('Posição inválida.');
-    }
-
-    if (posicao === 1) {
-      this.cabeca = this.cabeca!.proximo;
-    } else {
-      let indice = 1;
-      let noAtual = this.cabeca!;
-      let noAnterior = null;
-
-      while (indice < posicao) {
-        noAnterior = noAtual;
-        noAtual = noAtual.proximo!;
-        indice++;
+      if (posicao <= 0 || posicao > this.tamanho) {
+        throw new Error('Posição inválida.');
       }
 
-      noAnterior!.proximo = noAtual.proximo;
-    }
+      if (posicao === 1) {
+        this.cabeca = this.cabeca!.proximo;
+      } else {
+        let indice = 1;
+        let noAtual = this.cabeca!;
+        let noAnterior = null;
 
-    this.tamanho--;
-  }
+        while (indice < posicao) {
+          noAnterior = noAtual;
+          noAtual = noAtual.proximo!;
+          indice++;
+        }
+
+        noAnterior!.proximo = noAtual.proximo;
+      }
+      this.tamanho--;
+    }
 
   
   public removerPorValor(valor: number): void {

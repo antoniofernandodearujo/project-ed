@@ -7,45 +7,50 @@ import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada"
 import BoxListaDuplamenteEncadeada from "../../box/boxListaDuplamenteEncadeada"
 
 const FormLDE: React.FC = () => {
-    const [pos, setPos] = useState<string>("")
-    const [value, setValue] = useState<string>("")
+    const [posAdd, setPosAdd] = useState<string>("")
+    const [valueAdd, setValueAdd] = useState<string>("")
+    const [posRemove, setPosRemove] = useState<string>("")
+    const [valueRemove, setValueRemove] = useState<string>("")
+    const [posSearch, setPosSearch] = useState<string>("")
+    const [valueSearch, setValueSearch] = useState<string>("")
+
     const [lista, setLista] = useState(new ListaDuplamenteEncadeada());
     
     function adicionarValor() {
-        const valorNumerico = parseInt(value);
+        const valorNumerico = parseInt(valueAdd);
     
         if (!isNaN(valorNumerico)) {
-            const posicaoNumerica = parseInt(pos)
+            const posicaoNumerica = parseInt(posAdd)
             lista.adicionar(valorNumerico, posicaoNumerica)
             setLista(lista)
         }
     
-        setValue("");
-        setPos("");
+        setValueAdd("");
+        setPosAdd("");
     }
 
     function remove() {
-        const position = pos;
-        const val = value;
+        const position = posRemove;
+        const val = valueRemove;
     
         if(position !== "") {
             if(!isNaN(parseInt(position))) {
                 lista.removerPorPosicao(parseInt(position))
                 setLista(lista)
-                setPos("")
+                setPosRemove("")
             }
         } else if(val !== "") {
             if(!isNaN(parseInt(val))) {
                 lista.removerPorValor(parseInt(val));
                 setLista(lista);
-                setValue("");
+                setValueRemove("");
             }
         }
     }
 
     function search () {
-        const position = pos;
-        const val = value;
+        const position = posSearch;
+        const val = valueSearch;
         let no = null;
     
         if (position !== "") {
@@ -53,21 +58,30 @@ const FormLDE: React.FC = () => {
                 no = lista.buscarPorPosicao(parseInt(position));
                 console.log(`O valor da posição ${position} é ${no?.valor}`);
                 setLista(lista);
-                setPos("");
+                setPosSearch("");
             }
         } else if (val !== "") {
             if (!isNaN(parseInt(val))) {
                 no = lista.buscarPorValor(parseInt(val));
                 setLista(lista);
-                setValue("");
+                setValueSearch("");
     
                 if (no === null) {
-                    console.log(`O valor ${val} não está na lista`);
+                    alert(`Porra! O valor ${val} não está na lista CARALHO!!!`);
                 } else {
-                    console.log(`O valor ${val} está na lista`);
+                    alert(`O valor ${val} está na lista`);
                 }
             }
         }
+    }
+
+    function reset() {
+        setPosAdd("")
+        setValueAdd("")
+        setPosRemove("")
+        setValueRemove("")
+        setPosSearch("")
+        setValueSearch("")
     }
 
     return (
@@ -77,8 +91,8 @@ const FormLDE: React.FC = () => {
                 <S.Content>          
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
-                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" value={valueAdd} onChange={(e) => setValueAdd(e.target.value)}/>
+                            <S.Input type="text" value={posAdd} onChange={(e) => setPosAdd(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             onClick={adicionarValor}
@@ -90,8 +104,8 @@ const FormLDE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
-                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" value={valueRemove} onChange={(e) => setValueRemove(e.target.value)}/>
+                            <S.Input type="text" value={posRemove} onChange={(e) => setPosRemove(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             style={{ marginTop: '4%', marginLeft: '1.2%' }} type="button"
@@ -103,20 +117,20 @@ const FormLDE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input onChange={(e) => setPos(e.target.value)} type="text"/>
+                            <S.Input value={posSearch} onChange={(e) => setPosSearch(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Posição</S.Button>
                     </S.Area>
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input onChange={(e) => setValue(e.target.value)} type="text"/>
+                            <S.Input value={valueSearch} onChange={(e) => setValueSearch(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Valor</S.Button>    
                     </S.Area>
                 
                     <S.ContainerButton>
-                        <S.Button style={{ marginTop: '4%' }} type="button">Reset</S.Button>
+                        <S.Button onClick={reset} style={{ marginTop: '4%' }} type="button">Reset</S.Button>
                     </S.ContainerButton>        
                 </S.Content>
             </S.Container>

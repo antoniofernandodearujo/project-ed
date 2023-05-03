@@ -14,7 +14,7 @@ const Form: React.FC = () => {
     const [posSearch, setPosSearch] = useState<string>("")
     const [valueSearch, setValueSearch] = useState<string>("")
 
-    const [myList, setMyList] = useState(new ListaSequencial(8, [1, 3, 5, 4, 5, 6, 8, 7]))
+    const [myList, setMyList] = useState(new ListaSequencial(8, [], 0))
 
     function handleAddNumber() {
  
@@ -32,10 +32,11 @@ const Form: React.FC = () => {
         const position = parseInt(posAdd)
 
         myList.addInList(num, position)
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers))
+        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
         setPosAdd("")
         setValueAdd("")
         console.log(myList)
+        
     }
 
     function handleRemoveNumber() {
@@ -48,7 +49,7 @@ const Form: React.FC = () => {
         if(posRemove !== "") 
             myList.removeInList(undefined, position)
 
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers))
+        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
         setPosRemove("")
         setValueRemove("")
     }
@@ -58,18 +59,13 @@ const Form: React.FC = () => {
         const num = parseInt(valueSearch)
         const position = parseInt(posSearch)
 
-        if(isNaN(num) || isNaN(position)) {
-            alert("Digite um valor válido")
-            return
-        }
-
         if(valueSearch !== "")
             myList.searchInList(num, undefined)
         
         if(posSearch !== "") 
             myList.searchInList(undefined, position)
 
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers))
+        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
         setValueSearch("")
         setPosSearch("")
     }
