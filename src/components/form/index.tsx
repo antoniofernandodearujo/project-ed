@@ -7,66 +7,80 @@ import { ListaSequencial } from "@/src/core/ListaSequencial"
 import Box from "../box"
 
 const Form: React.FC = () => {
-    const [pos, setPos] = useState<string>("")
-    const [value, setValue] = useState<string>("")
-    const [myList, setMyList] = useState(new ListaSequencial(8, [1, 3, 5]))
+    const [posAdd, setPosAdd] = useState<string>("")
+    const [valueAdd, setValueAdd] = useState<string>("")
+    const [posRemove, setPosRemove] = useState<string>("")
+    const [valueRemove, setValueRemove] = useState<string>("")
+    const [posSearch, setPosSearch] = useState<string>("")
+    const [valueSearch, setValueSearch] = useState<string>("")
+
+    const [myList, setMyList] = useState(new ListaSequencial(8, [1, 3, 5, 4, 5, 6, 8, 7]))
 
     function handleAddNumber() {
  
-        if(value === "" && pos === ""){
+        if(valueAdd === "" && posAdd === ""){
             alert("Digite um valor válido")
             return
         }
 
-        if(isNaN(parseInt(value)) || isNaN(parseInt(pos))) {
+        if(isNaN(parseInt(valueAdd)) || isNaN(parseInt(posAdd))) {
             alert("Digite um valor válido")
             return
         }
 
-        const num = parseInt(value)
-        const position = parseInt(pos)
+        const num = parseInt(valueAdd)
+        const position = parseInt(posAdd)
 
         myList.addInList(num, position)
         setMyList(new ListaSequencial(myList.max, myList.listNumbers))
-        setPos("")
-        setValue("")
+        setPosAdd("")
+        setValueAdd("")
         console.log(myList)
     }
 
     function handleRemoveNumber() {
-        const num = parseInt(value)
-        const position = parseInt(pos) 
+        const num = parseInt(valueRemove)
+        const position = parseInt(posRemove) 
         
-        if(value !== "")
+        if(valueRemove !== "")
             myList.removeInList(num, undefined)
         
-        if(pos !== "") 
+        if(posRemove !== "") 
             myList.removeInList(undefined, position)
 
         setMyList(new ListaSequencial(myList.max, myList.listNumbers))
-        setPos("")
-        setValue("")
+        setPosRemove("")
+        setValueRemove("")
     }
 
     function handleSearchNumber() {
 
-        const num = parseInt(value)
-        const position = parseInt(pos)
+        const num = parseInt(valueSearch)
+        const position = parseInt(posSearch)
 
         if(isNaN(num) || isNaN(position)) {
             alert("Digite um valor válido")
             return
         }
 
-        if(value !== "")
+        if(valueSearch !== "")
             myList.searchInList(num, undefined)
         
-        if(pos !== "") 
+        if(posSearch !== "") 
             myList.searchInList(undefined, position)
 
         setMyList(new ListaSequencial(myList.max, myList.listNumbers))
-        setPos("")
-        setValue("")
+        setValueSearch("")
+        setPosSearch("")
+    }
+
+    function reset() {
+        setPosAdd("")
+        setValueAdd("")
+        setPosRemove("")
+        setValueRemove("")
+        setPosSearch("")
+        setValueSearch("")
     }
 
     return (
@@ -76,8 +90,8 @@ const Form: React.FC = () => {
                 <S.Content>          
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
-                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" value={valueAdd} onChange={(e) => setValueAdd(e.target.value)}/>
+                            <S.Input type="text" value={posAdd} onChange={(e) => setPosAdd(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             onClick={handleAddNumber} 
@@ -89,8 +103,8 @@ const Form: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
-                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" value={valueRemove} onChange={(e) => setValueRemove(e.target.value)}/>
+                            <S.Input type="text" value={posRemove} onChange={(e) => setPosRemove(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             style={{ marginTop: '4%', marginLeft: '1.2%' }} type="button"
@@ -102,20 +116,20 @@ const Form: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input onChange={(e) => setPos(e.target.value)} type="text"/>
+                            <S.Input value={posSearch} onChange={(e) => setPosSearch(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={handleSearchNumber} style={{ marginTop: '4%' }} type="button">Buscar Posição</S.Button>
                     </S.Area>
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input onChange={(e) => setValue(e.target.value)} type="text"/>
+                            <S.Input value={valueSearch} onChange={(e) => setValueSearch(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={handleSearchNumber} style={{ marginTop: '4%' }} type="button">Buscar Valor</S.Button>    
                     </S.Area>
                 
                     <S.ContainerButton>
-                        <S.Button style={{ marginTop: '4%' }} type="button">Reset</S.Button>
+                        <S.Button  onClick={reset} style={{ marginTop: '4%' }} type="button">Reset</S.Button>
                     </S.ContainerButton>        
                 </S.Content>
             </S.Container>

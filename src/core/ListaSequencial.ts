@@ -16,17 +16,18 @@ export class ListaSequencial implements ListInterface {
   }
 
   addInList(num: number, pos: number) {
-    if (this.listNumbers.length >= this.max) {
+    const index = parseInt(String(pos)) - 1;
+
+    if(this.listNumbers.length >= this.max) {
       alert('A lista já atingiu seu tamanho máximo.');
       return;
     }
   
-    if (pos > this.listNumbers.length + 1 || pos < 1) {
+    if(pos > this.listNumbers.length || pos < 1) {
       alert('Posição inválida.');
       return;
     }
-  
-    const index = parseInt(String(pos)) - 1;
+
     const newList = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
   
     this.listNumbers = newList;
@@ -54,17 +55,17 @@ export class ListaSequencial implements ListInterface {
         alert('Posição inválida.');
       }
     } else if (num !== undefined) {
-      const number = parseInt(String(num));
-      if (this.listNumbers.includes(number)) {
-        newList = this.listNumbers.filter((n) => n !== number);
-        this.listNumbers = newList;
+      const index = this.listNumbers.indexOf(num);
+      if (index > -1) {
+        this.listNumbers.splice(index, 1);
       } else {
-        alert(`O número ${number} não existe na lista.`);
+        alert(`O número ${num} não existe na lista.`);
       }
     } else {
       alert('Informe a posição ou o número a ser removido.');
     }
   }
+
 
   searchInList(num?: number, pos?: number) {
     if (num !== undefined) {
