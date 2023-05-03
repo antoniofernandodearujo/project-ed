@@ -8,6 +8,11 @@ const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
 
     return (
         <S.Container>
+
+            <S.ContainerTitle>
+                <S.TitleList>Lista Sequencial</S.TitleList>
+            </S.ContainerTitle>
+
             <S.Box>
                 <S.Content>
                     {myList.listNumbers.map((num, index) => (

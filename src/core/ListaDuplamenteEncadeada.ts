@@ -30,11 +30,11 @@ export class ListaDuplamenteEncadeada {
 
   public adicionar(valor: number, posicao: number): void {
     if (posicao <= 0 || posicao > this.tamanho + 1) {
-      throw new Error('Posição inválida.');
+      alert('Posição inválida.');
     }
 
     if (this.tamanho >= 8) {
-      throw new Error('Tamanho máximo da lista excedido.');
+      alert('Tamanho máximo da lista excedido.');
     }
 
     const novoNo = new No(valor);
@@ -65,11 +65,11 @@ export class ListaDuplamenteEncadeada {
 
   public removerPorPosicao(posicao: number): void {
     if (posicao <= 0 || posicao > this.tamanho) {
-      throw new Error('Posição inválida.');
+      alert('Posição inválida.');
     }
   
     if (this.tamanho <= 0) {
-      throw new Error('A lista está vazia.');
+      alert('A lista está vazia.');
     }
   
     if (this.tamanho === 8 && posicao === this.tamanho) {
@@ -121,7 +121,7 @@ export class ListaDuplamenteEncadeada {
     }
     
     if (this.tamanho < 8 && atual === null) {
-      throw new Error('O elemento não foi encontrado na lista.');
+      alert('O elemento não foi encontrado na lista.');
     }
   }
   

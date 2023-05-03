@@ -56,7 +56,7 @@ const FormLDE: React.FC = () => {
         if (position !== "") {
             if (!isNaN(parseInt(position))) {
                 no = lista.buscarPorPosicao(parseInt(position));
-                console.log(`O valor da posição ${position} é ${no?.valor}`);
+                alert(`O valor da posição ${position} é ${no?.valor}`);
                 setLista(lista);
                 setPosSearch("");
             }
@@ -67,7 +67,7 @@ const FormLDE: React.FC = () => {
                 setValueSearch("");
     
                 if (no === null) {
-                    alert(`Porra! O valor ${val} não está na lista CARALHO!!!`);
+                    alert(`O valor ${val} não está na lista`);
                 } else {
                     alert(`O valor ${val} está na lista`);
                 }

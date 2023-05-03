@@ -12,6 +12,11 @@ const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }
 
     return(
         <S.Container>
+
+            <S.ContainerTitle>
+                <S.TitleList>Lista Duplamente Encadeada</S.TitleList>
+            </S.ContainerTitle>
+
             <S.Box>
                 <S.Header>
                     <S.ContainerHeader>
@@ -24,7 +29,7 @@ const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }
                     </S.ContainerHeader>
 
                     <S.ContainerIconHeader>
-                        <IoReturnDownForwardSharp style={{ backgroundColor: '#fff' }} size={95} color="#000"  />
+                        <IoReturnDownForwardSharp style={{ backgroundColor: '#fff' }} size={60} color="#000"  />
                     </S.ContainerIconHeader>
 
                 </S.Header>
@@ -40,9 +45,27 @@ const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }
                                 </S.Case>
                             </S.ContainerAll>
 
-                            <S.ContainerArrowRight>
-                                <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
-                            </S.ContainerArrowRight>
+                            {
+                                index + 1 < myList.getTamanho() ? (
+
+                                    <>  
+                                        {
+                             
+                                            <S.ContainerArrowRight>
+                                                <IoRepeatSharp style={{ backgroundColor: '#fff' }} size={30} color="#000" />
+                                            </S.ContainerArrowRight>
+
+                                        }
+                                    
+                                    </>
+
+                                    
+                                )
+                                :
+                                    <></>
+                            }
+
+                            
                         </>
                     ))}
 

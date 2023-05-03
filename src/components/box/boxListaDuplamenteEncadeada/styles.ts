@@ -22,6 +22,18 @@ export const ContainerHeader = styled.div`
     background-color: #fff;
 `
 
+export const ContainerTitle = styled.div`
+    position: absolute;
+    top: 0;
+    margin-top: 2%;
+`
+
+export const TitleList = styled.h2`
+    font-weight: bold;
+    font-size: 22pt;
+    color: #fff;
+`
+
 export const CaseHeader = styled.div`
     display: flex;
     flex-direction: column;
@@ -57,7 +69,7 @@ export const TitleHeader = styled.label`
 export const Box = styled.div`
     position: absolute;
     top: 0;
-    margin-top: 4%;
+    margin-top: 6%;
 
     width: 85vw;
     height: 20vh;
@@ -112,8 +124,8 @@ export const ContainerIconHeader = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    margin-top: 70%;
-    margin-left: 45%;
+    margin-top: 90%;
+    margin-left: 20%;
 `
 
 export const ContainerArrowRight = styled.div`

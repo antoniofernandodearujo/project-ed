@@ -24,6 +24,18 @@ export const Box = styled.div`
     align-items: center;
 `
 
+export const ContainerTitle = styled.div`
+    position: absolute;
+    top: 0;
+    margin-top: 2%;
+`
+
+export const TitleList = styled.h2`
+    font-weight: bold;
+    font-size: 22pt;
+    color: #fff;
+`
+
 export const Content = styled.div`
     width: 80vw;
     height: 80px;

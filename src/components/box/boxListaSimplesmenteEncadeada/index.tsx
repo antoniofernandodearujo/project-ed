@@ -5,16 +5,18 @@ import * as S from "./styles"
 import { IoArrowForwardOutline, IoReturnDownForwardSharp } from "react-icons/io5";
 //class LSE
 import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada";
-//animation
-import { animated, useSpring } from "react-spring"
 
 const BoxListaSimplesmenteEncadeada: React.FC<{ myList: ListaSimplesmenteEncadeada }> = ({ myList }) => {
 
     let cabeca = myList.getCabeca()
-    const [showArrow, setShowArrow] = useState<boolean>(false)
-
+    
     return(
         <S.Container>
+
+            <S.ContainerTitle>
+                <S.TitleList>Lista Simplesmente Encadeada</S.TitleList>
+            </S.ContainerTitle>
+
             <S.Box>
                 <S.Header>
                     <S.ContainerHeader>
@@ -27,7 +29,7 @@ const BoxListaSimplesmenteEncadeada: React.FC<{ myList: ListaSimplesmenteEncadea
                     </S.ContainerHeader>
 
                     <S.ContainerIconHeader>
-                        <IoReturnDownForwardSharp style={{ backgroundColor: '#fff' }} size={95} color="#000"  />
+                        <IoReturnDownForwardSharp style={{ backgroundColor: '#fff' }} size={60} color="#000"  />
                     </S.ContainerIconHeader>
 
                 </S.Header>
@@ -45,10 +47,23 @@ const BoxListaSimplesmenteEncadeada: React.FC<{ myList: ListaSimplesmenteEncadea
                             </S.ContainerAll>
 
                             {
-                                index + 1 <= 1 ?
-                                    null
+                                index + 1 < myList.getTamanho() ? (
+
+                                    <>  
+                                        {
+                             
+                                            <S.ContainerIcon>
+                                                <IoArrowForwardOutline style={{ backgroundColor: '#fff' }} size={32} />
+                                            </S.ContainerIcon>
+
+                                        }
+                                    
+                                    </>
+
+                                    
+                                )
                                 :
-                                    <IoArrowForwardOutline />
+                                    <></>
                             }
 
                             
