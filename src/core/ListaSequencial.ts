@@ -31,27 +31,24 @@ export class ListaSequencial implements ListInterface {
   }
 
   addInList(num: number, pos: number) {
-  if (this.listIsfull()) {
-    alert('A lista já atingiu seu tamanho máximo.');
-    return;
-  }
-
-  if (pos < 1 || pos > this.max + 1) {
-    alert('Posição inválida.');
-    return;
-  }
-
-  for (let i = this.nElements; i >= pos; i--) {
-    this.listNumbers[i] = this.listNumbers[i - 1];
-  }
-
-  this.listNumbers.splice
+    if (this.listIsfull()) {
+      alert('A lista já atingiu seu tamanho máximo.');
+      return;
+    }
   
-  this.listNumbers[pos - 1] = num;
-  this.nElements++;
+    if (pos < 1 || pos > this.nElements + 1) {
+      alert('Posição inválida.');
+      return;
+    }
   
-}
-
+    if (pos === this.nElements + 1) {
+      this.listNumbers.push(num);
+    } else {
+      this.listNumbers.splice(pos, 0, num);
+    }
+  
+    this.nElements++;
+  }
   
   removeInList(num?: number, pos?: number) {
     if (pos !== undefined && num !== undefined) {
