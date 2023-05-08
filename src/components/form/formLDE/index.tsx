@@ -5,6 +5,7 @@ import * as S from "./styles"
 import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada"
 //components
 import BoxListaDuplamenteEncadeada from "../../box/boxListaDuplamenteEncadeada"
+import { json } from "stream/consumers"
 
 const FormLDE: React.FC = () => {
     const [posAdd, setPosAdd] = useState<string>("")
@@ -51,6 +52,7 @@ const FormLDE: React.FC = () => {
     function search () {
         const position = posSearch;
         const val = valueSearch;
+        let posi = null;
         let no = null;
     
         if (position !== "") {
@@ -62,14 +64,14 @@ const FormLDE: React.FC = () => {
             }
         } else if (val !== "") {
             if (!isNaN(parseInt(val))) {
-                no = lista.buscarPorValor(parseInt(val));
+                let index = lista.buscarPorValor(parseInt(val));
                 setLista(lista);
                 setValueSearch("");
     
-                if (no === null) {
+                if (index === null) {
                     alert(`O valor ${val} não está na lista`);
                 } else {
-                    alert(`O valor ${val} está na lista`);
+                    alert(`O valor ${val} está na lista na posição ${index.valueOf()}`);
                 }
             }
         }

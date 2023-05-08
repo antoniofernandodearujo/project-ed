@@ -6,6 +6,15 @@ import { ListaSequencial } from "@/src/core/ListaSequencial";
 
 const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
 
+    const orangeBoxes = Array.from({length: myList.max}, (_, i) => (
+        <S.ContainerAll key={i}>
+            <S.Title>{i + 1}°</S.Title>
+            <S.Case>
+                <S.BoxNumber>[ {myList.listNumbers[i] ?? "null"} ]</S.BoxNumber>
+            </S.Case>
+        </S.ContainerAll>
+    ))
+
     return (
         <S.Container>
 
@@ -13,16 +22,13 @@ const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
                 <S.TitleList>Lista Sequencial</S.TitleList>
             </S.ContainerTitle>
 
+            <S.ContainerNumberMax>
+                <S.Title style={{ backgroundColor: '#FF9A02', color: '#fff' }}>MAX: {myList.listNumbers.length}</S.Title>
+            </S.ContainerNumberMax>
+
             <S.Box>
                 <S.Content>
-                    {myList.listNumbers.map((num, index) => (
-                        <S.ContainerAll key={index}>
-                        <S.Title>{index + 1}°</S.Title>
-                            <S.Case>
-                                <S.BoxNumber>[ {num} ]</S.BoxNumber>
-                            </S.Case>
-                        </S.ContainerAll>
-                    ))}
+                    {orangeBoxes}
                 </S.Content>
             </S.Box>
         </S.Container>

@@ -18,25 +18,23 @@ const Form: React.FC = () => {
 
     function handleAddNumber() {
  
-        if(valueAdd === "" && posAdd === ""){
-            alert("Digite um valor válido")
-            return
+        if (!valueAdd || !posAdd) {
+            alert("Informe um número e uma posição.");
+            return;
         }
-
-        if(isNaN(parseInt(valueAdd)) || isNaN(parseInt(posAdd))) {
-            alert("Digite um valor válido")
-            return
+    
+        const num = parseInt(valueAdd);
+        const pos = parseInt(posAdd);
+    
+        if (isNaN(num) || isNaN(pos)) {
+            alert("Informe um número e uma posição válidos.");
+            return;
         }
-
-        const num = parseInt(valueAdd)
-        const position = parseInt(posAdd)
-
-        myList.addInList(num, position)
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
-        setPosAdd("")
-        setValueAdd("")
-        console.log(myList)
-        
+    
+        myList.addInList(num, pos);
+        setValueAdd("");
+        setPosAdd("");
+    
     }
 
     function handleRemoveNumber() {

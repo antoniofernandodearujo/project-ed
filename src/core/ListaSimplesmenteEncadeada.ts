@@ -118,6 +118,7 @@ export class ListaSimplesmenteEncadeada {
 
 
   public buscarPorPosicao(posicao: number): No | null {
+    
     if (posicao <= 0 || posicao > this.tamanho) {
       return null;
     }
@@ -131,6 +132,22 @@ export class ListaSimplesmenteEncadeada {
     }
   
     return noAtual;
+  }
+
+  public buscarPorPosicaoRI(posicao: number): number | null {
+    
+    if (posicao <= 0 || posicao > this.tamanho) {
+      return null;
+    }
+  
+    let noAtual = this.cabeca;
+    let indice = 1;
+  
+    while (indice < posicao) {
+      noAtual = noAtual!.proximo;
+      indice++;
+    }
+    return indice;
   }
 
   public buscarPorValor(valor: number): No | null {

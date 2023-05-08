@@ -149,3 +149,62 @@ export const BoxNumber = styled.h4`
 export const Title = styled.h4`
     background-color: #fff;
 `
+
+//Cauda - style
+export const Cauda = styled.div`
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin-top: 1%;
+    margin-right: .5%;
+`
+export const ContainerCauda = styled.div`
+    background-color: #fff;
+`
+
+export const CaseCauda = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 80px;
+    height: 55px;
+    border-radius: 8px;
+`
+
+export const ContentCauda = styled.div`
+    background-color: #fff;
+
+    width: 90%;
+    height: 85%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
+
+export const TitleCauda = styled.label`
+    background-color: #fff;
+    font-size: 12px;
+`
+
+export const BoxNumberCauda = styled.h4`
+    background-color: #fff;
+`
+
+export const ContainerIconCauda = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 90%;
+    margin-left: 20%;
+`

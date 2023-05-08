@@ -5,6 +5,7 @@ import * as S from "./styles"
 import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada"
 //components
 import BoxListaSimplesmenteEncadeada from "../../box/boxListaSimplesmenteEncadeada"
+import { parse } from "path"
 
 const FormLSE: React.FC = () => {
     const [posAdd, setPosAdd] = useState<string>("")
@@ -52,7 +53,7 @@ const FormLSE: React.FC = () => {
         const position = posSearch;
         const val = valueSearch;
         let no = null;
-    
+        let posi = null;
         if (position !== "") {
             if (!isNaN(parseInt(position))) {
                 no = lista.buscarPorPosicao(parseInt(position));
@@ -63,13 +64,15 @@ const FormLSE: React.FC = () => {
         } else if (val !== "") {
             if (!isNaN(parseInt(val))) {
                 no = lista.buscarPorValor(parseInt(val));
+                posi = lista.buscarPorPosicaoRI(parseInt(position));
+                
                 setLista(lista);
                 setValueSearch("");
     
                 if (no === null) {
-                    alert(`O valor ${val} não está na lista`);
+                    alert(`O valor não está na lista!`);
                 } else {
-                    alert(`O valor ${val} está na lista`);
+                    alert(`O valor ${val} está na lista!`);
                 }
             }
         }

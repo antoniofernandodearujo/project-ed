@@ -24,6 +24,28 @@ export const Box = styled.div`
     align-items: center;
 `
 
+export const ContainerNumberMax = styled.div`
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-top: 6%;
+    margin-right: 5%;
+    z-index: 2000;
+    border: 1px solid #fff;
+    border-radius: 10px;
+
+    background-color: #FF9A02;
+
+    width: 85px;
+    height: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+`
+
 export const ContainerTitle = styled.div`
     position: absolute;
     top: 0;

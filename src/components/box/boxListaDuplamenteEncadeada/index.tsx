@@ -2,13 +2,14 @@ import React from "react"
 //styles
 import * as S from "./styles"
 //icon
-import { IoRepeatSharp, IoReturnDownForwardSharp } from "react-icons/io5";
+import { IoRepeatSharp, IoReturnDownForwardSharp, IoReturnDownBackSharp } from "react-icons/io5";
 //list duplamente encadeada
 import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada";
 
 const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }> = ({ myList }) => {
 
-    let cabeca = myList.getCabeca();
+    let cabeca = myList.getCabeca()
+    let cauda = myList.getCauda()
 
     return(
         <S.Container>
@@ -68,6 +69,21 @@ const BoxListaDuplamenteEncadeada: React.FC<{ myList: ListaDuplamenteEncadeada }
                             
                         </>
                     ))}
+
+                    <S.Cauda>
+                        <S.ContainerCauda>
+                            <S.CaseCauda>
+                                <S.ContentCauda>
+                                    <S.TitleCauda>Tail Value</S.TitleCauda>
+                                    <S.BoxNumberCauda> {cauda?.valor} </S.BoxNumberCauda>    
+                                </S.ContentCauda>
+                            </S.CaseCauda>
+                        </S.ContainerCauda>
+
+                        <S.ContainerIconCauda>
+                            <IoReturnDownBackSharp style={{ backgroundColor: '#fff' }} size={60} color="#000"  />
+                        </S.ContainerIconCauda>
+                    </S.Cauda>
 
                 </S.Content>
             </S.Box>

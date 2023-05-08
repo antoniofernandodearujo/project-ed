@@ -31,68 +31,27 @@ export class ListaSequencial implements ListInterface {
   }
 
   addInList(num: number, pos: number) {
-
-    /*if(pos > this.nElements + 1 || pos <= 0){
-      alert('Posição inválida.');
-      return;
-    }*/
-
-    if(pos > this.nElements + 1 || pos <= 0){
-      alert('Posição inválida.');
-      return;
-    }
-
-    if(this.listIsfull()) {
-      alert('A lista já atingiu seu tamanho máximo.');
-      return;
-    }
-
-    const index = parseInt(String(pos)) - 1;
-
-    if (index >= 0 && index < this.max ) { // Verificação de posição 2
-      
-    } else {
-      alert('Posição inválida.');
-      return;
-    }
-
-    this.nElements++;
-
-    this.listNumbers = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)]
-
-    /*for(let i = this.nElements; i >= pos; i--){
-      this.listNumbers[i] = this.listNumbers[i - 1];
-    }
-
-    this.listNumbers[pos - 1] = num;*/
-    
-
-    console.log(this.nElements);
-    
-
-    /*const index = parseInt(String(pos)) - 1;
-    
-    if(pos > this.nElements + 1){ // Verificação de posição 1
-      alert('Posição inválida.');
-      return;
-    }
-
-    if (this.listIsfull()) {
-      alert('A lista já atingiu seu tamanho máximo.');
-      return;
-    }
-
-
-    if (index >= 0 && index < this.max) { // Verificação de posição 2
-    }else{
-      alert('Posição inválida.');
-      return;
-    }
-
-    this.nElements++;
-    // Adiciona o elemento na*/
-    
+  if (this.listIsfull()) {
+    alert('A lista já atingiu seu tamanho máximo.');
+    return;
   }
+
+  if (pos < 1 || pos > this.max + 1) {
+    alert('Posição inválida.');
+    return;
+  }
+
+  for (let i = this.nElements; i >= pos; i--) {
+    this.listNumbers[i] = this.listNumbers[i - 1];
+  }
+
+  this.listNumbers.splice
+  
+  this.listNumbers[pos - 1] = num;
+  this.nElements++;
+  
+}
+
   
   removeInList(num?: number, pos?: number) {
     if (pos !== undefined && num !== undefined) {
