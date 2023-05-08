@@ -23,7 +23,7 @@ const Box: React.FC<{ myList: ListaSequencial }> = ({myList}) => {
             </S.ContainerTitle>
 
             <S.ContainerNumberMax>
-                <S.Title style={{ backgroundColor: '#FF9A02', color: '#fff' }}>MAX: {myList.listNumbers.length}</S.Title>
+                <S.Title style={{ backgroundColor: '#FF9A02', color: '#fff' }}>MAX: {8}</S.Title>
             </S.ContainerNumberMax>
 
             <S.Box>
