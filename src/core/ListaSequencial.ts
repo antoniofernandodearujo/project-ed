@@ -1,13 +1,15 @@
 interface ListInterface {
+  max: number;
+  listNumbers: number[];
   addInList: (num: number, pos: number) => void;
   removeInList: (num?: number, pos?: number) => void;
   searchInList: (num?: number, pos?: number) => void;
 }
   
 export class ListaSequencial implements ListInterface {
-  private max: number;
-  private listNumbers: number[];
-  private nElements: number;
+  max: number;
+  listNumbers: number[];
+  nElements: number;
 
   constructor(max: number, listNumbers: number[]) {
     this.max = max;
@@ -15,12 +17,25 @@ export class ListaSequencial implements ListInterface {
     this.nElements = listNumbers.length;
   }
 
-  addInList(num: number, pos: number) {    
+  addInList(num: number, pos: number) {
+<<<<<<< HEAD
+    
     if(pos > this.nElements + 1){ // Verificação de posição 1
+=======
+    const index = parseInt(String(pos)) - 1;
+
+    if(this.listNumbers.length >= this.max) {
+      alert('A lista já atingiu seu tamanho máximo.');
+      return;
+    }
+  
+    if(pos > this.listNumbers.length || pos < 1) {
+>>>>>>> f977fdb30254ff63f4ee6f5cb485de0c3730c64a
       alert('Posição inválida.');
       return;
     }
 
+<<<<<<< HEAD
     if (this.listIsfull()) {
       alert('A lista já atingiu seu tamanho máximo.');
       return;
@@ -36,6 +51,11 @@ export class ListaSequencial implements ListInterface {
     this.nElements++;
     // Adiciona o elemento na posição informada e move os demais elementos para a direita
     this.listNumbers = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
+=======
+    const newList = [...this.listNumbers.slice(0, index), num, ...this.listNumbers.slice(index)];
+  
+    this.listNumbers = newList;
+>>>>>>> f977fdb30254ff63f4ee6f5cb485de0c3730c64a
   }
   removeInList(num?: number, pos?: number) {
     if (pos !== undefined && num !== undefined) {//
@@ -71,6 +91,8 @@ export class ListaSequencial implements ListInterface {
 
     this.nElements--;
   }
+
+
   searchInList(num?: number, pos?: number) {
     if (num !== undefined) {
       const index = this.listNumbers.indexOf(num);
@@ -90,13 +112,8 @@ export class ListaSequencial implements ListInterface {
       alert('Informe a posição ou o número a ser pesquisado.');
     }
   }
-  listIsfull() {
+ 
+  private listIsfull() {
     return this.listNumbers.length >= this.max;
-  }
-  listIsEmpty() {
-    return this.listNumbers.length === 0;
-  }
-  listSize() {
-    return this.listNumbers.length;
   }
 } 

@@ -7,50 +7,45 @@ import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadead
 import BoxListaSimplesmenteEncadeada from "../../box/boxListaSimplesmenteEncadeada"
 
 const FormLSE: React.FC = () => {
-    const [posAdd, setPosAdd] = useState<string>("")
-    const [valueAdd, setValueAdd] = useState<string>("")
-    const [posRemove, setPosRemove] = useState<string>("")
-    const [valueRemove, setValueRemove] = useState<string>("")
-    const [posSearch, setPosSearch] = useState<string>("")
-    const [valueSearch, setValueSearch] = useState<string>("")
-
+    const [pos, setPos] = useState<string>("")
+    const [value, setValue] = useState<string>("")
     const [lista, setLista] = useState(new ListaSimplesmenteEncadeada());
     
     function adicionarValor() {
-        const valorNumerico = parseInt(valueAdd);
+        const valorNumerico = parseInt(value);
     
-        if(!isNaN(valorNumerico)) {
-            const posicaoNumerica = parseInt(posAdd)
+        if (!isNaN(valorNumerico)) {
+            const posicaoNumerica = parseInt(pos)
             lista.adicionar(valorNumerico, posicaoNumerica)
             setLista(lista)
         }
     
-        setValueAdd("");
-        setPosAdd("");
+        setValue("");
+        setPos("");
     }
 
     function remove() {
-        const position = posRemove;
-        const val = valueRemove;
+        const position = pos;
+        const val = value;
     
         if(position !== "") {
             if(!isNaN(parseInt(position))) {
                 lista.removerPorPosicao(parseInt(position))
                 setLista(lista)
-                setPosRemove("")
+                setPos("")
             }
         } else if(val !== "") {
             if(!isNaN(parseInt(val))) {
                 lista.removerPorValor(parseInt(val));
                 setLista(lista);
-                setValueRemove("");
+                setValue("");
             }
         }
     }
 
     function search () {
-        const position = posSearch;
-        const val = valueSearch;
+        const position = pos;
+        const val = value;
         let no = null;
     
         if (position !== "") {
@@ -58,13 +53,13 @@ const FormLSE: React.FC = () => {
                 no = lista.buscarPorPosicao(parseInt(position));
                 console.log(`O valor da posição ${position} é ${no?.valor}`);
                 setLista(lista);
-                setPosSearch("");
+                setPos("");
             }
         } else if (val !== "") {
             if (!isNaN(parseInt(val))) {
                 no = lista.buscarPorValor(parseInt(val));
                 setLista(lista);
-                setValueSearch("");
+                setValue("");
     
                 if (no === null) {
                     console.log(`O valor ${val} não está na lista`);
@@ -74,15 +69,6 @@ const FormLSE: React.FC = () => {
             }
         }
     }
-
-    function reset() {
-        setPosAdd("")
-        setValueAdd("")
-        setPosRemove("")
-        setValueRemove("")
-        setPosSearch("")
-        setValueSearch("")
-    }
     
     return (
         <>
@@ -91,8 +77,8 @@ const FormLSE: React.FC = () => {
                 <S.Content>          
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" value={valueAdd} onChange={(e) => setValueAdd(e.target.value)}/>
-                            <S.Input type="text" value={posAdd} onChange={(e) => setPosAdd(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
+                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             onClick={adicionarValor}
@@ -104,8 +90,8 @@ const FormLSE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" value={valueRemove} onChange={(e) => setValueRemove(e.target.value)}/>
-                            <S.Input type="text" value={posRemove} onChange={(e) => setPosRemove(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.Input type="text" onChange={(e) => setValue(e.target.value)}/>
+                            <S.Input type="text" onChange={(e) => setPos(e.target.value)} style={{ marginLeft: '3%' }} />
                         </S.AreaInput>
                         <S.Button 
                             style={{ marginTop: '4%', marginLeft: '1.2%' }} type="button"
@@ -117,20 +103,20 @@ const FormLSE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input value={posSearch} onChange={(e) => setPosSearch(e.target.value)} type="text"/>
+                            <S.Input onChange={(e) => setPos(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Posição</S.Button>
                     </S.Area>
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input value={valueSearch} onChange={(e) => setValueSearch(e.target.value)} type="text"/>
+                            <S.Input onChange={(e) => setValue(e.target.value)} type="text"/>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Valor</S.Button>    
                     </S.Area>
                 
                     <S.ContainerButton>
-                        <S.Button onClick={reset} style={{ marginTop: '4%' }} type="button">Reset</S.Button>
+                        <S.Button style={{ marginTop: '4%' }} type="button">Reset</S.Button>
                     </S.ContainerButton>        
                 </S.Content>
             </S.Container>
