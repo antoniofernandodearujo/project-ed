@@ -1,44 +1,41 @@
 interface ListInterface {
-  max: number;
-  nElements: number;
-  listNumbers: number[];
   addInList: (num: number, pos: number) => void;
   removeInList: (num?: number, pos?: number) => void;
   searchInList: (num?: number, pos?: number) => void;
 }
   
 export class ListaSequencial implements ListInterface {
-  max: number;
-  listNumbers: number[];
-  nElements: number;
+  private max: number;
+  private listNumbers: number[];
+  private nElements: number;
 
-  constructor(max: number, listNumbers: number[], nElements: number) {
+  constructor(max: number, listNumbers: number[]) {
     this.max = max;
     this.listNumbers = listNumbers;
-    this.nElements = nElements;
+    this.nElements = 0;
   }
 
-  private listIsfull(): any {
+  listIsfull(): any {
     return this.nElements === this.max;
   }
 
-  private listIsEmpty(): boolean {
+  listIsEmpty(): boolean {
     return this.nElements === 0;
   }
 
-  private size(): number {
+  size(): number {
     return this.nElements;
   }
 
   addInList(num: number, pos: number) {
     if (this.listIsfull()) {
       alert('A lista já atingiu seu tamanho máximo.');
-      return;
+      return -1;
     }
   
     if (pos < 1 || pos > this.nElements + 1) {
       alert('Posição inválida.');
-      return;
+      return -1;
     }
   
     if (pos === this.nElements + 1) {
@@ -46,8 +43,9 @@ export class ListaSequencial implements ListInterface {
     } else {
       this.listNumbers.splice(pos, 0, num);
     }
-  
+    
     this.nElements++;
+    return 1;
   }
   
   removeInList(num?: number, pos?: number) {
