@@ -2,7 +2,7 @@
 
 Este é um aplicativo web que demonstra interativamente três tipos de listas sequenciais: lista sequencial, lista simplesmente encadeada e lista duplamente encadeada. O objetivo deste projeto é auxiliar estudantes de Estrutura de Dados a compreenderem a implementação e funcionamento dessas estruturas.
 
-## Veja o app rodando em sua mquina: https://project-ed.netlify.app/
+## Veja o app rodando em sua máquina: https://project-ed.netlify.app/
 
 ## Como iniciar o projeto
 
