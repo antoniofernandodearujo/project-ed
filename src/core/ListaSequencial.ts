@@ -30,6 +30,14 @@ export class ListaSequencial implements ListInterface {
     return this.nElements;
   }
 
+  public getMax(): number {
+    return this.max;
+  }
+
+  public getListNumbers(): number[] {
+    return this.listNumbers;
+  }
+
   addInList(num: number, pos: number) {
     if (this.listIsfull()) {
       alert('A lista já atingiu seu tamanho máximo.');
