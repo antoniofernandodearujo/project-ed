@@ -61,7 +61,7 @@ export class ListaDuplamenteEncadeada {
     } else {
       let anterior = this.buscarPorPosicao(posicao - 1);
       if (anterior === null) {
-        alert('Posição inválida.');
+        throw new Error('Posição inválida.');
       }
       let atual = anterior.proximo;
 
