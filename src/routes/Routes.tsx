@@ -1,10 +1,10 @@
 import {  Routes, Route } from "react-router-dom";
 //pages
-import Principal from "../pages/home/"
-import Welcome from "../pages/welcome/"
-import ListSequential from "../pages/listaSequencial/"
-import ListaSimplesmenteEncadeada from "../pages/listaSimplesmenteEncadeada/"
-import ListaDuplamenteEncadeada from "../pages/listaDuplamenteEncadeada/"
+import Principal from "../views/home/"
+import Welcome from "../views/welcome/"
+import ListSequential from "../views/listaSequencial/"
+import ListaSimplesmenteEncadeada from "../views/listaSimplesmenteEncadeada/"
+import ListaDuplamenteEncadeada from "../views/listaDuplamenteEncadeada/"
 
 function Router() {
     if (typeof document !== "undefined") {

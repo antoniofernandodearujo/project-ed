@@ -2,16 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/hello": "pages/api/hello.js",
-  "/home": "pages/home.js",
-  "/home/styles": "pages/home/styles.js",
-  "/": "pages/index.js",
-  "/listaDuplamenteEncadeada": "pages/listaDuplamenteEncadeada.js",
-  "/listaDuplamenteEncadeada/styles": "pages/listaDuplamenteEncadeada/styles.js",
-  "/listaSequencial": "pages/listaSequencial.js",
-  "/listaSequencial/styles": "pages/listaSequencial/styles.js",
-  "/listaSimplesmenteEncadeada": "pages/listaSimplesmenteEncadeada.js",
-  "/listaSimplesmenteEncadeada/styles": "pages/listaSimplesmenteEncadeada/styles.js",
-  "/welcome": "pages/welcome.js",
-  "/welcome/styles": "pages/welcome/styles.js"
+  "/": "pages/index.js"
 }
