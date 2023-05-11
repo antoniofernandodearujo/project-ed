@@ -14,7 +14,10 @@ const Form: React.FC = () => {
     const [posSearch, setPosSearch] = useState<string>("")
     const [valueSearch, setValueSearch] = useState<string>("")
 
-    const [myList, setMyList] = useState(new ListaSequencial(8, [], 0))
+    const [myList, setMyList] = useState(new ListaSequencial(8, []))
+
+    const max = myList.getMax()
+    const list = myList.getListNumbers()
 
     function handleAddNumber() {
  
@@ -47,7 +50,7 @@ const Form: React.FC = () => {
         if(posRemove !== "") 
             myList.removeInList(undefined, position)
 
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
+        setMyList(new ListaSequencial(max, list))
         setPosRemove("")
         setValueRemove("")
     }
@@ -63,7 +66,7 @@ const Form: React.FC = () => {
         if(posSearch !== "") 
             myList.searchInList(undefined, position)
 
-        setMyList(new ListaSequencial(myList.max, myList.listNumbers, myList.nElements))
+            setMyList(new ListaSequencial(max, list))
         setValueSearch("")
         setPosSearch("")
     }
