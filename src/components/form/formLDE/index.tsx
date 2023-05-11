@@ -5,7 +5,6 @@ import * as S from "./styles"
 import { ListaDuplamenteEncadeada } from "@/src/core/ListaDuplamenteEncadeada"
 //components
 import BoxListaDuplamenteEncadeada from "../../box/boxListaDuplamenteEncadeada"
-import { json } from "stream/consumers"
 
 const FormLDE: React.FC = () => {
     const [posAdd, setPosAdd] = useState<string>("")

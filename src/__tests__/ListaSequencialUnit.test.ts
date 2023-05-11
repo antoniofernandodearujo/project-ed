@@ -1,6 +1,4 @@
 import {ListaSequencial} from "../core/ListaSequencial";
-import React from "react";
-
 
 // Tamanho máximo da lista
 const TAM_MAX = 8; 

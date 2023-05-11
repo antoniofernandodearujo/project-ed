@@ -5,7 +5,6 @@ import * as S from "./styles"
 import { ListaSimplesmenteEncadeada } from "@/src/core/ListaSimplesmenteEncadeada"
 //components
 import BoxListaSimplesmenteEncadeada from "../../box/boxListaSimplesmenteEncadeada"
-import { parse } from "path"
 
 const FormLSE: React.FC = () => {
     const [posAdd, setPosAdd] = useState<string>("")
