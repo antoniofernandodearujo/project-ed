@@ -31,7 +31,19 @@ export const Area = styled.div`
 export const AreaInput = styled.div`
     display: flex;
     flex-direction: row;
-    
+`
+
+export const Text = styled.label`
+    margin-bottom: 5%;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+`
+
+export const AreaTextAndInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 `
 
 export const Input = styled.input`

@@ -34,6 +34,19 @@ export const AreaInput = styled.div`
     
 `
 
+export const Text = styled.label`
+    margin-bottom: 5%;
+    font-size: 22px;
+    color: #fff;
+    font-weight: bold;
+`
+
+export const AreaTextAndInput = styled.div`
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+`
+
 export const Input = styled.input`
     width: 95px;
     height: 55px;

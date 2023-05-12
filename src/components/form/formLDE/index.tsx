@@ -92,8 +92,15 @@ const FormLDE: React.FC = () => {
                 <S.Content>          
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" value={valueAdd} onChange={(e) => setValueAdd(e.target.value)}/>
-                            <S.Input type="text" value={posAdd} onChange={(e) => setPosAdd(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.AreaTextAndInput>
+                                <S.Text>* Valor</S.Text>
+                                <S.Input type="text" value={valueAdd} onChange={(e) => setValueAdd(e.target.value)}/>
+                            </S.AreaTextAndInput>
+
+                            <S.AreaTextAndInput>
+                                <S.Text>* Posição</S.Text>
+                                <S.Input type="text" value={posAdd} onChange={(e) => setPosAdd(e.target.value)} style={{ marginLeft: '3%' }} />
+                            </S.AreaTextAndInput>
                         </S.AreaInput>
                         <S.Button 
                             onClick={adicionarValor}
@@ -105,8 +112,15 @@ const FormLDE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input type="text" value={valueRemove} onChange={(e) => setValueRemove(e.target.value)}/>
-                            <S.Input type="text" value={posRemove} onChange={(e) => setPosRemove(e.target.value)} style={{ marginLeft: '3%' }} />
+                            <S.AreaTextAndInput>
+                                <S.Text>* Valor</S.Text>
+                                <S.Input type="text" value={valueRemove} onChange={(e) => setValueRemove(e.target.value)}/>
+                            </S.AreaTextAndInput>
+
+                            <S.AreaTextAndInput>
+                                <S.Text>* Posição</S.Text>
+                                <S.Input type="text" value={posRemove} onChange={(e) => setPosRemove(e.target.value)} style={{ marginLeft: '3%' }} />
+                            </S.AreaTextAndInput>
                         </S.AreaInput>
                         <S.Button 
                             style={{ marginTop: '4%', marginLeft: '1.2%' }} type="button"
@@ -118,14 +132,20 @@ const FormLDE: React.FC = () => {
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input value={posSearch} onChange={(e) => setPosSearch(e.target.value)} type="text"/>
+                            <S.AreaTextAndInput>
+                                <S.Text>* Posição</S.Text>
+                                <S.Input value={posSearch} onChange={(e) => setPosSearch(e.target.value)} type="text"/>
+                            </S.AreaTextAndInput>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Posição</S.Button>
                     </S.Area>
 
                     <S.Area>
                         <S.AreaInput>
-                            <S.Input value={valueSearch} onChange={(e) => setValueSearch(e.target.value)} type="text"/>
+                            <S.AreaTextAndInput>
+                                <S.Text>* Valor</S.Text>
+                                <S.Input value={valueSearch} onChange={(e) => setValueSearch(e.target.value)} type="text"/>
+                            </S.AreaTextAndInput>
                         </S.AreaInput>
                         <S.Button onClick={search} style={{ marginTop: '4%' }} type="button">Buscar Valor</S.Button>    
                     </S.Area>
