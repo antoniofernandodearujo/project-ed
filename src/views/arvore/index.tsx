@@ -32,7 +32,7 @@ const Arvore: React.FC = () => {
   };
 
   const transitions = useTransition(values, {
-    key: (item) => item.id,
+    key: (item: any) => item.id,
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
