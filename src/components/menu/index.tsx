@@ -30,6 +30,9 @@ const Menu: React.FC = () => {
                     <NavLink to="/list-sequential"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Lista Sequencial</S.MenuItem></NavLink>
                     <NavLink to="/list-simplesmente-encadeada"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Lista Simplesmente Encadeada</S.MenuItem></NavLink>
                     <NavLink to="/list-duplamente-encadeada"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Lista Duplamente Encadeada</S.MenuItem></NavLink>
+                    <NavLink to="/pilha"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Pilha </S.MenuItem></NavLink>
+                    <NavLink to="/arvore"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Árvore </S.MenuItem></NavLink>
+                    <NavLink to="/fila"><S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Fila </S.MenuItem></NavLink>
                     <S.BoxInfo>
                         <S.MenuItem> <IoRadioButtonOnOutline style={{ backgroundColor: '#fff' }}/> Mais informações</S.MenuItem>
                     </S.BoxInfo>
