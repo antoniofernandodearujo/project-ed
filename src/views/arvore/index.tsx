@@ -11,15 +11,26 @@ interface TreeNodeProps {
   node: Node;
   level: number;
   isLeftChild?: boolean;
+  parentX: number;
+  parentY: number;
 }
 
-const TreeNode: React.FC<TreeNodeProps> = ({ node, level, isLeftChild }) => {
+const TreeNode: React.FC<TreeNodeProps> = ({ node, level, isLeftChild, parentX, parentY }) => {
   const { value, left, right } = node;
 
-  const treeNodeStyle: React.CSSProperties = {
+  const treeContainerStyle: React.CSSProperties = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    position: "relative",
+    marginLeft: isLeftChild ? "20px" : "0",
+    marginRight: !isLeftChild ? "20px" : "0",
+  };
+
+  const treeNodeStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     padding: "10px",
     border: "1px solid #000",
     borderRadius: "50%",
@@ -28,51 +39,40 @@ const TreeNode: React.FC<TreeNodeProps> = ({ node, level, isLeftChild }) => {
     marginBottom: "20px",
   };
 
-  const treeLineStyle: React.CSSProperties = {
-    width: "100px",
-    height: "0",
+  const lineStyle: React.CSSProperties = {
+    position: "absolute",
     borderTop: "1px solid #000",
-    position: "absolute",
-    top: "50px",
-    left: "50%",
-    transform: "translateX(-50%)",
-  };
-
-  const arrowStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "60px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    display: "flex",
-    alignItems: "center",
-  };
-
-  const levelStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
+    left: `${parentX}px`,
+    top: `${parentY}px`,
+    width: isLeftChild ? "50%" : "calc(50% + 25px)",
+    height: "50px",
   };
 
   return (
-    <div style={levelStyle}>
+    <div style={treeContainerStyle}>
       {left && (
         <>
-          <TreeNode node={left} level={level + 1} isLeftChild />
-          <div style={arrowStyle}>
-            <FaArrowLeft />
-          </div>
+          <div style={lineStyle}></div>
+          <TreeNode
+            node={left}
+            level={level + 1}
+            isLeftChild
+            parentX={parentX - (2 ** (4 - level)) * 25}
+            parentY={parentY + 70}
+          />
         </>
       )}
-      <div style={{ position: "relative" }}>
-        <div style={treeLineStyle}></div>
-        <div style={treeNodeStyle}>{value}</div>
-      </div>
+      <div style={treeNodeStyle}>{value}</div>
       {right && (
         <>
-          <div style={arrowStyle}>
-            <FaArrowRight />
-          </div>
-          <TreeNode node={right} level={level + 1} />
+          <div style={lineStyle}></div>
+          <TreeNode
+            node={right}
+            level={level + 1}
+            isLeftChild={false}
+            parentX={parentX + (2 ** (4 - level)) * 25}
+            parentY={parentY + 70}
+          />
         </>
       )}
     </div>
@@ -102,20 +102,6 @@ const TreePage: React.FC = () => {
     setValue(0);
   };
 
-  const preorderTraversal = (node: Node | null): number[] => {
-    if (!node) {
-      return [];
-    }
-
-    const result: number[] = [];
-
-    result.push(node.value);
-    result.push(...preorderTraversal(node.left));
-    result.push(...preorderTraversal(node.right));
-
-    return result;
-  };
-
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
       <div>
@@ -133,20 +119,9 @@ const TreePage: React.FC = () => {
         {root && (
           <div>
             <h2>Árvore:</h2>
-            <div>
-              <TreeNode node={root} level={1} />
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <TreeNode node={root} level={1} isLeftChild={false} parentX={400} parentY={0} />
             </div>
-          </div>
-        )}
-
-        {root && (
-          <div>
-            <h2>Percurso em Pré-Ordem:</h2>
-            <ul>
-              {preorderTraversal(root).map((value, index) => (
-                <li key={index}>{value}</li>
-              ))}
-            </ul>
           </div>
         )}
       </div>

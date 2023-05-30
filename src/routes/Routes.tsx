@@ -6,7 +6,7 @@ import ListSequential from "../views/listaSequencial/"
 import ListaSimplesmenteEncadeada from "../views/listaSimplesmenteEncadeada/"
 import ListaDuplamenteEncadeada from "../views/listaDuplamenteEncadeada/"
 import Pilha from "../views/pilha/"
-import Arvore from "../views/arvore/";
+import Arvore from "../views/arvore";
 import Fila from "../views/fila/";
 
 function Router() {
