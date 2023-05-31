@@ -1,96 +1,28 @@
 import React, { useState } from "react";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
+import { BsArrowDownLeft, BsArrowDownRight } from "react-icons/bs";
 
 interface Node {
   value: number;
-  left?: Node | null;
-  right?: Node | null;
+  left: Node | null;
+  right: Node | null;
 }
 
-interface TreeNodeProps {
-  node: Node;
-  level: number;
-  isLeftChild?: boolean;
-  parentX: number;
-  parentY: number;
-}
-
-const TreeNode: React.FC<TreeNodeProps> = ({ node, level, isLeftChild, parentX, parentY }) => {
-  const { value, left, right } = node;
-
-  const treeContainerStyle: React.CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    position: "relative",
-    marginLeft: isLeftChild ? "20px" : "0",
-    marginRight: !isLeftChild ? "20px" : "0",
-  };
-
-  const treeNodeStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "10px",
-    border: "1px solid #000",
-    borderRadius: "50%",
-    width: "50px",
-    height: "50px",
-    marginBottom: "20px",
-  };
-
-  const lineStyle: React.CSSProperties = {
-    position: "absolute",
-    borderTop: "1px solid #000",
-    left: `${parentX}px`,
-    top: `${parentY}px`,
-    width: isLeftChild ? "50%" : "calc(50% + 25px)",
-    height: "50px",
-  };
-
-  return (
-    <div style={treeContainerStyle}>
-      {left && (
-        <>
-          <div style={lineStyle}></div>
-          <TreeNode
-            node={left}
-            level={level + 1}
-            isLeftChild
-            parentX={parentX - (2 ** (4 - level)) * 25}
-            parentY={parentY + 70}
-          />
-        </>
-      )}
-      <div style={treeNodeStyle}>{value}</div>
-      {right && (
-        <>
-          <div style={lineStyle}></div>
-          <TreeNode
-            node={right}
-            level={level + 1}
-            isLeftChild={false}
-            parentX={parentX + (2 ** (4 - level)) * 25}
-            parentY={parentY + 70}
-          />
-        </>
-      )}
-    </div>
-  );
-};
-
-const TreePage: React.FC = () => {
-  const [value, setValue] = useState<number>(0);
+const TreeAnimation: React.FC = () => {
+  const [values, setValues] = useState<number[]>([]);
   const [root, setRoot] = useState<Node | null>(null);
+
+  const getRandomValue = () => {
+    return Math.floor(Math.random() * 100) + 1;
+  };
 
   const addNode = (node: Node | null, value: number): Node => {
     if (!node) {
-      return { value };
+      return { value, left: null, right: null };
     }
 
     if (value < node.value) {
       node.left = addNode(node.left, value);
-    } else {
+    } else if (value > node.value) {
       node.right = addNode(node.right, value);
     }
 
@@ -98,32 +30,121 @@ const TreePage: React.FC = () => {
   };
 
   const handleAddNode = () => {
-    setRoot((prevRoot) => addNode(prevRoot, value));
-    setValue(0);
+    const newValue = getRandomValue();
+    setValues((prevValues) => [...prevValues, newValue]);
+    setRoot((prevRoot) => addNode(prevRoot, newValue));
+  };
+
+  const preOrderTraversal = (node: Node | null): number[] => {
+    if (!node) return [];
+    const result: number[] = [];
+    result.push(node.value);
+    result.push(...preOrderTraversal(node.left));
+    result.push(...preOrderTraversal(node.right));
+    return result;
+  };
+
+  const inOrderTraversal = (node: Node | null): number[] => {
+    if (!node) return [];
+    const result: number[] = [];
+    result.push(...inOrderTraversal(node.left));
+    result.push(node.value);
+    result.push(...inOrderTraversal(node.right));
+    return result;
+  };
+
+  const postOrderTraversal = (node: Node | null): number[] => {
+    if (!node) return [];
+    const result: number[] = [];
+    result.push(...postOrderTraversal(node.left));
+    result.push(...postOrderTraversal(node.right));
+    result.push(node.value);
+    return result;
+  };
+
+  const handlePreOrderTraversal = () => {
+    const result = preOrderTraversal(root);
+    alert(`Pré-Ordem: ${result.join(", ")}`);
+  };
+
+  const handleInOrderTraversal = () => {
+    const result = inOrderTraversal(root);
+    alert(`In-Ordem: ${result.join(", ")}`);
+  };
+
+  const handlePostOrderTraversal = () => {
+    const result = postOrderTraversal(root);
+    alert(`Pós-Ordem: ${result.join(", ")}`);
+  };
+
+  const renderTree = (node: Node | null, isRight: boolean): React.ReactNode => {
+    if (!node) return null;
+
+    const marginLeft = isRight ? "45px" : "0";
+    const marginRight = isRight ? "0" : "45px";
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginLeft, marginRight }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "40px",
+            height: "40px",
+            borderRadius: "50%",
+            border: "1px solid #fff",
+            fontWeight: "bold",
+            color: "#fff"
+          }}
+        >
+          {node.value}
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-around", marginTop: "20px" }}>
+          {node.left && (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsArrowDownLeft style={{ color: "#fff", marginRight: "-5px" }} size={30} />
+              </div>
+              {renderTree(node.left, false)}
+            </div>
+          )}
+          {node.right && (
+            <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsArrowDownRight style={{ color: "#383838", marginRight: "5px" }} size={30} />
+              </div>
+              {renderTree(node.right, true)}
+            </div>
+          )}
+        </div>
+      </div>
+    );
   };
 
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "100vh" }}>
-      <div>
+    <div>
+      <h2>Árvore:</h2>
+      <button style={{ border: "none" }} onClick={handleAddNode}>Adicionar</button>
+      {values.length >= 3 && (
         <div>
-          <label htmlFor="value">Digite um valor: </label>
-          <input
-            type="number"
-            id="value"
-            value={value}
-            onChange={(e) => setValue(Number(e.target.value))}
-          />
-          <button onClick={handleAddNode}>Adicionar</button>
+          <button onClick={handlePreOrderTraversal}>Pré-Ordem</button>
+          <button onClick={handleInOrderTraversal}>In-Ordem</button>
+          <button onClick={handlePostOrderTraversal}>Pós-Ordem</button>
         </div>
+      )}
+      <div>
+        {renderTree(root, false)}
+      </div>
+    </div>
+  );
+};
 
-        {root && (
-          <div>
-            <h2>Árvore:</h2>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <TreeNode node={root} level={1} isLeftChild={false} parentX={400} parentY={0} />
-            </div>
-          </div>
-        )}
+const TreePage: React.FC = () => {
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "85%", height: "100%" }}>
+      <div>
+        <TreeAnimation />
       </div>
     </div>
   );
