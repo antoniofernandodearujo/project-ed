@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { BsArrowDownLeft, BsArrowDownRight } from "react-icons/bs";
+import * as S from "./styles";
+//img
+import img from "../assets/vector.png"
+import Menu from "@/src/components/menu";
+import Button from "@/src/components/button";
 
 interface Node {
   value: number;
@@ -10,6 +15,7 @@ interface Node {
 const TreeAnimation: React.FC = () => {
   const [values, setValues] = useState<number[]>([]);
   const [root, setRoot] = useState<Node | null>(null);
+  const [searchValue, setSearchValue] = useState<number | null>(null);
 
   const getRandomValue = () => {
     return Math.floor(Math.random() * 100) + 1;
@@ -122,21 +128,73 @@ const TreeAnimation: React.FC = () => {
     );
   };
 
+  const searchNode = (node: Node | null, value: number): boolean => {
+    if (!node) return false;
+
+    if (value === node.value) {
+      return true;
+    } else if (value < node.value) {
+      return searchNode(node.left, value);
+    } else {
+      return searchNode(node.right, value);
+    }
+  };
+
+  const handleSearch = () => {
+    if (searchValue !== null) {
+      const found = searchNode(root, searchValue);
+      if (found) {
+        alert(`O valor ${searchValue} foi encontrado na árvore.`);
+      } else {
+        alert(`O valor ${searchValue} não foi encontrado na árvore.`);
+      }
+    }
+  };
+
   return (
-    <div>
-      <h2>Árvore:</h2>
-      <button style={{ border: "none" }} onClick={handleAddNode}>Adicionar</button>
-      {values.length >= 3 && (
-        <div>
-          <button onClick={handlePreOrderTraversal}>Pré-Ordem</button>
-          <button onClick={handleInOrderTraversal}>In-Ordem</button>
-          <button onClick={handlePostOrderTraversal}>Pós-Ordem</button>
-        </div>
-      )}
-      <div>
-        {renderTree(root, false)}
-      </div>
-    </div>
+    <S.Container>
+      <S.Title>Árvore</S.Title>
+
+      <S.ContainerOptions>
+
+        <S.Button onClick={handleAddNode}>Adicionar</S.Button>
+
+        <S.ContainerSearch>
+          <S.AreaTextAndInput>
+            <S.Input 
+              type="number" 
+              value={searchValue || ''} 
+              onChange={e => setSearchValue(Number(e.target.value))}
+              style={{ marginBottom: "5%"}}
+            />
+          </S.AreaTextAndInput>
+          <S.Button onClick={handleSearch}>Pesquisar</S.Button>
+        </S.ContainerSearch>
+      </S.ContainerOptions>
+
+      <S.ContainerCaminho>
+          
+          {values.length >= 3 && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                width: "500px"
+              }}
+            >
+              <S.Button onClick={handlePreOrderTraversal}>Pré-Ordem</S.Button>
+              <S.Button onClick={handleInOrderTraversal}>In-Ordem</S.Button>
+              <S.Button onClick={handlePostOrderTraversal}>Pós-Ordem</S.Button>
+            </div>
+          )}
+
+        </S.ContainerCaminho>
+
+      
+      <S.ContainerArvore>{renderTree(root, false)}</S.ContainerArvore>
+    </S.Container>
   );
 };
 
@@ -144,7 +202,15 @@ const TreePage: React.FC = () => {
   return (
     <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "85%", height: "100%" }}>
       <div>
-        <TreeAnimation />
+        <S.Container>
+          <Menu />
+          <TreeAnimation />
+
+            <S.ContainerButton>
+              <Button type={2}/>
+            </S.ContainerButton>
+          
+        </S.Container>
       </div>
     </div>
   );

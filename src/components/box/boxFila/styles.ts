@@ -42,6 +42,7 @@ export const CaseHeader = styled.div`
 
     width: 80px;
     height: 55px;
+
     border-radius: 8px;
 `
 
@@ -58,7 +59,8 @@ export const ContentHeader = styled.div`
 `
 
 export const Elemento = styled.h3`
-
+    background-color: #FF9A02;
+    color: #fff;
 `
 
 export const BoxNumberHeader = styled.h4`
@@ -100,7 +102,7 @@ export const Content = styled.div`
     background-color: #fff;
 `
 
-export const Case = styled.div`
+export const CaseFila = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -25,7 +25,7 @@ const BoxFila: React.FC<BoxFilaProps> = ({ fila }) => {
           <S.ContainerHeader>
             <S.CaseHeader>
               <S.ContentHeader>
-                <S.TitleHeader>Initial Value</S.TitleHeader>
+                <S.TitleHeader>Initial Val</S.TitleHeader>
                 <S.BoxNumberHeader>{fila.length > 0 ? fila[0] : ""}</S.BoxNumberHeader>
               </S.ContentHeader>
             </S.CaseHeader>
@@ -39,7 +39,10 @@ const BoxFila: React.FC<BoxFilaProps> = ({ fila }) => {
         <S.Content>
           {transitions((style, item) => (
             <animated.div style={style}>
-              <S.Elemento>{item}</S.Elemento>
+              <S.CaseFila>
+                <S.Elemento >{item}</S.Elemento>
+              </S.CaseFila>
+              
             </animated.div>
           ))}
 
